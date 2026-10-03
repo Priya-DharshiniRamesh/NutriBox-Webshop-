@@ -235,26 +235,25 @@ function localNutriBoxAgent(question, businessData) {
         return `The current average order value is ${formatMoney(averageOrderValue)}.`;
     }
 
+// BEST PRODUCT
 
-    // BEST PRODUCT
-
-    if (
-        q.includes("best selling") ||
-        q.includes("best-selling") ||
-        q.includes("most selling") ||
-        q.includes("most popular") ||
-        q.includes("popular product") ||
-        q.includes("top product")
-    ) {
-        if (products.length === 0) {
-            return "There is not enough product order data to identify the best-selling product.";
-        }
-
-        const top = products[0];
-
-        return `${top.name} is currently the most ordered NutriBox product, with ${top.quantity.toLocaleString("en-IN")} units sold and ${formatMoney(top.sales)} in sales.`;
+if (
+    q.includes("most selling") ||
+    q.includes("selling the most") ||
+    q.includes("most sold") ||
+    q.includes("sold the most") ||
+    q.includes("most popular") ||
+    q.includes("popular product") ||
+    q.includes("top product")
+) {
+    if (products.length === 0) {
+        return "There is not enough product order data to identify the best-selling product.";
     }
 
+    const top = products[0];
+
+    return `${top.name} is currently the most ordered NutriBox product, with ${top.quantity.toLocaleString("en-IN")} units sold and ${formatMoney(top.sales)} in sales.`;
+}
 
     // PRODUCT LIST
 
