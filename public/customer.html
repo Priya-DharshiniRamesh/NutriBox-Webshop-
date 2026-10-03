@@ -17,8 +17,6 @@
 
 <body>
 
-    <!-- HEADER -->
-
     <header>
 
         <div class="logo">
@@ -35,7 +33,7 @@
                 Products
             </a>
 
-            <button onclick="logout()">
+            <button class="dashboard-logout" onclick="logout()">
                 Logout
             </button>
 
@@ -44,56 +42,80 @@
     </header>
 
 
-    <!-- CUSTOMER DASHBOARD -->
-
     <main class="dashboard">
 
-        <h1>
-            Customer Dashboard
-        </h1>
+        <div class="dashboard-heading">
 
-        <p id="welcomeMessage">
-            Welcome to NutriBox
-        </p>
+            <div>
+
+                <p class="dashboard-label">
+                    NUTRIBOX CUSTOMER PORTAL
+                </p>
+
+                <h1>
+                    Customer Dashboard
+                </h1>
+
+                <p id="welcomeMessage">
+                    Welcome to NutriBox
+                </p>
+
+            </div>
+
+            <div class="dashboard-icon">
+                🥗
+            </div>
+
+        </div>
 
 
         <!-- CUSTOMER INFORMATION -->
 
         <section class="customer-info">
 
-            <h2>
-                Customer Information
-            </h2>
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-icon">👤</span>
+
+                    <div>
+                        <h2>Customer Information</h2>
+                        <p>Your registered organization details</p>
+                    </div>
+                </div>
+
+            </div>
+
 
             <div class="info-grid">
 
-                <div>
-                    <strong>Organization</strong>
+                <div class="info-item">
+                    <span class="info-label">Organization</span>
                     <p id="organizationName">-</p>
                 </div>
 
-                <div>
-                    <strong>Customer Type</strong>
+                <div class="info-item">
+                    <span class="info-label">Customer Type</span>
                     <p id="customerType">-</p>
                 </div>
 
-                <div>
-                    <strong>Contact Person</strong>
+                <div class="info-item">
+                    <span class="info-label">Contact Person</span>
                     <p id="contactPerson">-</p>
                 </div>
 
-                <div>
-                    <strong>Email</strong>
+                <div class="info-item">
+                    <span class="info-label">Email</span>
                     <p id="email">-</p>
                 </div>
 
-                <div>
-                    <strong>Phone</strong>
+                <div class="info-item">
+                    <span class="info-label">Phone</span>
                     <p id="phone">-</p>
                 </div>
 
-                <div>
-                    <strong>Location</strong>
+                <div class="info-item">
+                    <span class="info-label">Location</span>
                     <p id="location">-</p>
                 </div>
 
@@ -108,6 +130,10 @@
 
             <div class="dashboard-card">
 
+                <div class="card-icon">
+                    📦
+                </div>
+
                 <h3>
                     Total Orders
                 </h3>
@@ -120,6 +146,10 @@
 
 
             <div class="dashboard-card">
+
+                <div class="card-icon">
+                    🥗
+                </div>
 
                 <h3>
                     Total Meals Ordered
@@ -134,6 +164,10 @@
 
             <div class="dashboard-card">
 
+                <div class="card-icon">
+                    💰
+                </div>
+
                 <h3>
                     Total Spending
                 </h3>
@@ -147,6 +181,10 @@
 
             <div class="dashboard-card">
 
+                <div class="card-icon">
+                    📊
+                </div>
+
                 <h3>
                     Average Order Value
                 </h3>
@@ -159,6 +197,10 @@
 
 
             <div class="dashboard-card">
+
+                <div class="card-icon">
+                    ⭐
+                </div>
 
                 <h3>
                     Customer Satisfaction
@@ -175,15 +217,28 @@
 
         <!-- RECENT ORDERS -->
 
-        <section class="orders-section">
+        <section class="orders-section dashboard-section">
 
-            <h2>Recent Orders</h2>
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-icon">📦</span>
+
+                    <div>
+                        <h2>Recent Orders</h2>
+                        <p>Your latest NutriBox orders</p>
+                    </div>
+                </div>
+
+            </div>
+
 
             <div class="table-container">
 
                 <table>
 
                     <thead>
+
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
@@ -191,14 +246,17 @@
                             <th>Status</th>
                             <th>Order Date</th>
                         </tr>
+
                     </thead>
 
                     <tbody id="ordersTable">
 
                         <tr>
+
                             <td colspan="5">
                                 Loading orders...
                             </td>
+
                         </tr>
 
                     </tbody>
@@ -210,15 +268,30 @@
         </section>
 
 
-        <section class="orders-section">
+        <!-- ORDER HISTORY -->
 
-            <h2>Order History</h2>
+        <section class="orders-section dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-icon">🧾</span>
+
+                    <div>
+                        <h2>Order History</h2>
+                        <p>View all your previous orders</p>
+                    </div>
+                </div>
+
+            </div>
+
 
             <div class="table-container">
 
                 <table>
 
                     <thead>
+
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
@@ -227,14 +300,17 @@
                             <th>Status</th>
                             <th>Order Date</th>
                         </tr>
+
                     </thead>
 
                     <tbody id="orderHistoryTable">
 
                         <tr>
+
                             <td colspan="6">
                                 Loading order history...
                             </td>
+
                         </tr>
 
                     </tbody>
@@ -243,48 +319,99 @@
 
             </div>
 
-        </section>  
-        
-        <section class="feedback-section">
-            <h2>Give Your Feedback</h2>
+        </section>
+
+
+        <!-- FEEDBACK -->
+
+        <section class="feedback-section dashboard-feedback">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-icon">⭐</span>
+
+                    <div>
+                        <h2>Give Your Feedback</h2>
+                        <p>Help us improve your NutriBox experience</p>
+                    </div>
+                </div>
+
+            </div>
+
 
             <div class="feedback-box">
 
-                <label for="feedbackOrder">Select Order</label>
+                <label for="feedbackOrder">
+                    Select Order
+                </label>
 
                 <select id="feedbackOrder">
-                    <option value="">Select an order</option>
+
+                    <option value="">
+                        Select an order
+                    </option>
+
                 </select>
 
-                <label for="feedbackRating">Rating</label>
+
+                <label for="feedbackRating">
+                    Rating
+                </label>
 
                 <select id="feedbackRating">
-                    <option value="">Select rating</option>
-                    <option value="5">5 - Excellent</option>
-                    <option value="4">4 - Very Good</option>
-                    <option value="3">3 - Good</option>
-                    <option value="2">2 - Average</option>
-                    <option value="1">1 - Poor</option>
+
+                    <option value="">
+                        Select rating
+                    </option>
+
+                    <option value="5">
+                        5 - Excellent
+                    </option>
+
+                    <option value="4">
+                        4 - Very Good
+                    </option>
+
+                    <option value="3">
+                        3 - Good
+                    </option>
+
+                    <option value="2">
+                        2 - Average
+                    </option>
+
+                    <option value="1">
+                        1 - Poor
+                    </option>
+
                 </select>
 
-                <label for="feedbackComment">Comment</label>
+
+                <label for="feedbackComment">
+                    Comment
+                </label>
 
                 <textarea
                     id="feedbackComment"
                     rows="4"
-                    placeholder="Enter your feedback">
+                    placeholder="Tell us about your NutriBox experience">
                 </textarea>
+
 
                 <button onclick="submitFeedback()">
                     Submit Feedback
                 </button>
 
             </div>
+
         </section>
 
     </main>
 
+
     <script src="/socket.io/socket.io.js"></script>
+
     <script src="customer.js"></script>
 
 </body>

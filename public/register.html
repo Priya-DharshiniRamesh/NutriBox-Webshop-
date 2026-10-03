@@ -28,142 +28,195 @@
     </header>
 
 
-    <section class="registration-section">
+    <section class="register-page">
 
-        <div class="registration-container">
+        <div class="register-card">
 
-            <h1>Customer Registration</h1>
+            <div class="register-icon">
+                🥗
+            </div>
 
-            <p>
+            <h1>Create Your Account</h1>
+
+            <p class="register-subtitle">
                 Register your organization with NutriBox
+                and start managing healthy meal orders.
             </p>
 
 
             <form id="registrationForm">
 
-                <label for="organizationName">
-                    Organization Name
-                </label>
+                <div class="register-form-group">
 
-                <input
-                    type="text"
-                    id="organizationName"
-                    placeholder="Enter organization name"
-                    required
+                    <label for="organizationName">
+                        Organization Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="organizationName"
+                        placeholder="Enter organization name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="register-form-group">
+
+                    <label for="customerType">
+                        Customer Type
+                    </label>
+
+                    <select id="customerType" required>
+
+                        <option value="">
+                            Select customer type
+                        </option>
+
+                        <option value="Gym / Fitness Centre">
+                            Gym / Fitness Centre
+                        </option>
+
+                        <option value="Corporate Office">
+                            Corporate Office
+                        </option>
+
+                        <option value="College Hostel">
+                            College Hostel
+                        </option>
+
+                        <option value="Hospital / Wellness Centre">
+                            Hospital / Wellness Centre
+                        </option>
+
+                        <option value="Hotel / Cafeteria">
+                            Hotel / Cafeteria
+                        </option>
+
+                        <option value="Sports Academy">
+                            Sports Academy
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="register-form-group">
+
+                    <label for="contactPerson">
+                        Contact Person
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contactPerson"
+                        placeholder="Enter contact person name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="register-form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter email address"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="register-form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Enter phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="register-form-group">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        placeholder="Enter city"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="register-form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="register-button"
                 >
-
-
-                <label for="customerType">
-                    Customer Type
-                </label>
-
-                <select id="customerType" required>
-
-                    <option value="">
-                        Select customer type
-                    </option>
-
-                    <option value="Gym / Fitness Centre">
-                        Gym / Fitness Centre
-                    </option>
-
-                    <option value="Corporate Office">
-                        Corporate Office
-                    </option>
-
-                    <option value="College Hostel">
-                        College Hostel
-                    </option>
-
-                    <option value="Hospital / Wellness Centre">
-                        Hospital / Wellness Centre
-                    </option>
-
-                    <option value="Hotel / Cafeteria">
-                        Hotel / Cafeteria
-                    </option>
-
-                    <option value="Sports Academy">
-                        Sports Academy
-                    </option>
-
-                </select>
-
-
-                <label for="contactPerson">
-                    Contact Person
-                </label>
-
-                <input
-                    type="text"
-                    id="contactPerson"
-                    placeholder="Enter contact person name"
-                    required
-                >
-
-
-                <label for="email">
-                    Email
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter email address"
-                    required
-                >
-
-
-                <label for="phone">
-                    Phone Number
-                </label>
-
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="Enter phone number"
-                    required
-                >
-
-
-                <label for="location">
-                    Location
-                </label>
-
-                <input
-                    type="text"
-                    id="location"
-                    placeholder="Enter city"
-                    required
-                >
-
-
-                <label for="password">
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Create a password"
-                    required
-                >
-
-
-                <button type="submit">
-                    Register
+                    Create NutriBox Account
                 </button>
 
             </form>
 
 
-            <p id="registrationMessage"></p>
+            <p
+                id="registrationMessage"
+                class="register-message"
+            ></p>
 
 
-            <p>
+            <div class="register-login">
+
                 Already registered?
-                <a href="login.html">Login here</a>
-            </p>
+
+                <a href="login.html">
+                    Login here
+                </a>
+
+            </div>
+
+
+            <div class="register-home">
+
+                <a href="index.html">
+                    ← Back to NutriBox Home
+                </a>
+
+            </div>
 
         </div>
 

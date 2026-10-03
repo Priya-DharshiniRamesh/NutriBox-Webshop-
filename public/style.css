@@ -548,3 +548,956 @@ footer {
         width: 100%;
     }
 }
+
+.login-page {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #e8f5e9, #f7faf7);
+}
+
+.login-card {
+    width: 420px;
+    max-width: 100%;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+}
+
+.login-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 50%;
+    font-size: 38px;
+}
+
+.login-card h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: #26332a;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #68736b;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.login-form-group {
+    margin-bottom: 20px;
+}
+
+.login-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #26332a;
+}
+
+.login-form-group input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #d5ddd7;
+    border-radius: 9px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.login-form-group input:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.10);
+}
+
+.login-button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 9px;
+    background: #2e7d32;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.login-button:hover {
+    background: #256b29;
+    transform: translateY(-1px);
+}
+
+.login-message {
+    min-height: 22px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-register {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e9e6;
+    text-align: center;
+    color: #68736b;
+}
+
+.login-register a {
+    color: #2e7d32;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-register a:hover {
+    text-decoration: underline;
+}
+
+.login-home {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.login-home a {
+    color: #68736b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-home a:hover {
+    color: #2e7d32;
+}
+
+@media (max-width: 600px) {
+
+    .login-page {
+        padding: 35px 15px;
+    }
+
+    .login-card {
+        padding: 30px 22px;
+    }
+
+    .login-card h1 {
+        font-size: 28px;
+    }
+
+}
+
+/* Registration Page */
+
+.register-page {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #e8f5e9, #f7faf7);
+}
+
+.register-card {
+    width: 550px;
+    max-width: 100%;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+}
+
+.register-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 50%;
+    font-size: 38px;
+}
+
+.register-card h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: #26332a;
+}
+
+.register-subtitle {
+    text-align: center;
+    color: #68736b;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.register-form-group {
+    margin-bottom: 18px;
+}
+
+.register-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #26332a;
+}
+
+.register-form-group input,
+.register-form-group select {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #d5ddd7;
+    border-radius: 9px;
+    font-size: 16px;
+    background: white;
+    outline: none;
+    transition: 0.2s;
+}
+
+.register-form-group input:focus,
+.register-form-group select:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.10);
+}
+
+.register-button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 9px;
+    background: #2e7d32;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.register-button:hover {
+    background: #256b29;
+    transform: translateY(-1px);
+}
+
+.register-message {
+    min-height: 22px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.register-login {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e9e6;
+    text-align: center;
+    color: #68736b;
+}
+
+.register-login a {
+    color: #2e7d32;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-login a:hover {
+    text-decoration: underline;
+}
+
+.register-home {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-home a {
+    color: #68736b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.register-home a:hover {
+    color: #2e7d32;
+}
+
+@media (max-width: 600px) {
+
+    .register-page {
+        padding: 35px 15px;
+    }
+
+    .register-card {
+        padding: 30px 22px;
+    }
+
+    .register-card h1 {
+        font-size: 28px;
+    }
+
+}
+
+/* Customer Dashboard Enhancement */
+
+.dashboard {
+    max-width: 1200px;
+    margin: auto;
+    padding: 45px 20px 70px;
+}
+
+.dashboard-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 10px 5px;
+}
+
+.dashboard-label {
+    color: #2e7d32;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.dashboard-heading h1 {
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+.dashboard-heading #welcomeMessage {
+    color: #68736b;
+    font-size: 16px;
+}
+
+.dashboard-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 20px;
+    font-size: 42px;
+}
+
+.customer-info {
+    max-width: none;
+    margin: 0 0 25px;
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid #e3e9e4;
+}
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading > div {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.section-heading h2 {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.section-heading p {
+    color: #68736b;
+    font-size: 14px;
+}
+
+.section-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 12px;
+    font-size: 21px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.info-item {
+    padding: 17px;
+    background: #f7faf7;
+    border-radius: 10px;
+    border: 1px solid #e7ece8;
+}
+
+.info-label {
+    display: block;
+    color: #68736b;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.info-item p {
+    margin: 0;
+    font-weight: 600;
+    color: #26332a;
+}
+
+.dashboard-cards {
+    max-width: none;
+    margin: 0 0 35px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+.dashboard-card {
+    position: relative;
+    padding: 24px 18px;
+    background: white;
+    border: 1px solid #e3e9e4;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+    text-align: left;
+}
+
+.dashboard-card .card-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.dashboard-card h3 {
+    font-size: 14px;
+    color: #68736b;
+    margin-bottom: 8px;
+}
+
+.dashboard-card p {
+    font-size: 25px;
+    color: #26332a;
+}
+
+.dashboard-section {
+    max-width: none;
+    margin: 0 0 30px;
+    padding: 28px;
+    background: white;
+    border-radius: 18px;
+    border: 1px solid #e3e9e4;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-section .table-container {
+    border: 1px solid #e5e9e6;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.dashboard-section table {
+    min-width: 700px;
+}
+
+.dashboard-section th {
+    background: #f4f8f5;
+    color: #26332a;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.dashboard-section td {
+    font-size: 14px;
+}
+
+.dashboard-section tbody tr:hover {
+    background: #f8fbf8;
+}
+
+.dashboard-feedback {
+    max-width: none;
+    margin: 0;
+    padding: 28px;
+    border-radius: 18px;
+}
+
+.dashboard-feedback .feedback-box {
+    width: 100%;
+    max-width: 650px;
+    margin: 0;
+    padding: 25px;
+    border: 1px solid #e3e9e4;
+    box-shadow: none;
+}
+
+.dashboard-feedback .feedback-box button {
+    background: #2e7d32;
+    color: white;
+}
+
+.dashboard-logout {
+    border: none;
+    background: transparent;
+    color: #26332a;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dashboard-logout:hover {
+    color: #2e7d32;
+}
+
+@media (max-width: 1000px) {
+
+    .dashboard-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .dashboard {
+        padding: 30px 15px 50px;
+    }
+
+    .dashboard-heading {
+        align-items: flex-start;
+    }
+
+    .dashboard-heading h1 {
+        font-size: 30px;
+    }
+
+    .dashboard-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .dashboard-heading {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .customer-info,
+    .dashboard-section,
+    .dashboard-feedback {
+        padding: 20px;
+    }
+
+}
+
+/* Admin Dashboard Enhancement */
+
+.admin-dashboard-page {
+    max-width: 1250px;
+    margin: auto;
+    padding: 45px 20px 70px;
+}
+
+.admin-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    padding: 10px 5px;
+}
+
+.admin-heading h1 {
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+.admin-heading > div:first-child > p:last-child {
+    color: #68736b;
+}
+
+.admin-heading-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 20px;
+    font-size: 40px;
+}
+
+.admin-dashboard-cards {
+    max-width: none;
+    margin: 0 0 40px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.admin-dashboard-cards .dashboard-card {
+    min-height: 175px;
+}
+
+.admin-analytics-section {
+    margin-bottom: 35px;
+}
+
+.admin-section-heading {
+    margin-bottom: 22px;
+}
+
+.admin-section-heading > div {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-section-heading h2 {
+    font-size: 23px;
+    margin-bottom: 4px;
+}
+
+.admin-section-heading p {
+    color: #68736b;
+    font-size: 14px;
+}
+
+.admin-charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.admin-chart-card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #e3e9e4;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.admin-chart-card h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.admin-chart-card > p {
+    color: #68736b;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.admin-chart-card canvas {
+    width: 100% !important;
+    max-height: 300px;
+}
+
+.admin-table-section {
+    margin-bottom: 35px;
+    padding: 28px;
+    background: white;
+    border-radius: 18px;
+    border: 1px solid #e3e9e4;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table-section .table-container {
+    border: 1px solid #e5e9e6;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.admin-table-section table {
+    min-width: 750px;
+}
+
+.admin-table-section th {
+    background: #f4f8f5;
+    color: #26332a;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.admin-table-section tbody tr:hover {
+    background: #f8fbf8;
+}
+
+.admin-ai-section {
+    max-width: none;
+    margin: 0 0 35px;
+    padding: 28px;
+    border-radius: 18px;
+}
+
+.admin-ai-section .ai-chat-box {
+    border: 1px solid #dfe7e1;
+}
+
+.ai-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 18px;
+    background: #f7faf7;
+    border-bottom: 1px solid #e3e9e4;
+}
+
+.ai-suggestions button {
+    padding: 10px 14px;
+    border: 1px solid #d4ddd6;
+    border-radius: 20px;
+    background: white;
+    color: #26332a;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.ai-suggestions button:hover {
+    border-color: #2e7d32;
+    color: #2e7d32;
+    background: #e8f5e9;
+}
+
+.admin-ai-section .ai-messages {
+    min-height: 220px;
+}
+
+.admin-ai-section .ai-input-area {
+    border-top: 1px solid #e3e9e4;
+}
+
+.admin-ai-section .ai-input-area button {
+    background: #2e7d32;
+    color: white;
+}
+
+.admin-ai-section .ai-input-area button:hover {
+    background: #256b29;
+}
+
+@media (max-width: 900px) {
+
+    .admin-dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .admin-dashboard-page {
+        padding: 30px 15px 50px;
+    }
+
+    .admin-heading {
+        align-items: flex-start;
+    }
+
+    .admin-heading h1 {
+        font-size: 30px;
+    }
+
+    .admin-heading-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+    }
+
+    .admin-dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-table-section,
+    .admin-ai-section {
+        padding: 20px;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .admin-heading {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .ai-suggestions {
+        flex-direction: column;
+    }
+
+    .ai-suggestions button {
+        width: 100%;
+    }
+
+}
+
+/* Admin Login Page */
+
+.admin-login-page {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #e8f5e9, #f7faf7);
+}
+
+.admin-login-card {
+    width: 420px;
+    max-width: 100%;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+}
+
+.admin-login-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 50%;
+    font-size: 36px;
+}
+
+.admin-login-card h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: #26332a;
+}
+
+.admin-login-subtitle {
+    text-align: center;
+    color: #68736b;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.admin-login-form-group {
+    margin-bottom: 20px;
+}
+
+.admin-login-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #26332a;
+}
+
+.admin-login-form-group input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #d5ddd7;
+    border-radius: 9px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.admin-login-form-group input:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.10);
+}
+
+.admin-login-button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 9px;
+    background: #2e7d32;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.admin-login-button:hover {
+    background: #256b29;
+    transform: translateY(-1px);
+}
+
+.admin-login-message {
+    min-height: 22px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.admin-login-home {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e9e6;
+    text-align: center;
+}
+
+.admin-login-home a {
+    color: #68736b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.admin-login-home a:hover {
+    color: #2e7d32;
+}
+
+@media (max-width: 600px) {
+
+    .admin-login-page {
+        padding: 35px 15px;
+    }
+
+    .admin-login-card {
+        padding: 30px 22px;
+    }
+
+    .admin-login-card h1 {
+        font-size: 28px;
+    }
+
+}

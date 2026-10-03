@@ -27,57 +27,90 @@
     </header>
 
 
-    <section class="registration-section">
+    <section class="login-page">
 
-        <div class="registration-container">
+        <div class="login-card">
 
-            <h1>Customer Login</h1>
+            <div class="login-icon">
+                🥗
+            </div>
 
-            <p>
-                Login to access your NutriBox account
+            <h1>Welcome Back</h1>
+
+            <p class="login-subtitle">
+                Login to your NutriBox account
+                and manage your healthy meal orders.
             </p>
 
 
             <form id="loginForm">
 
-                <label for="email">
-                    Email
-                </label>
+                <div class="login-form-group">
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    required
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="login-form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
                 >
-
-
-                <label for="password">
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    required
-                >
-
-
-                <button type="submit">
-                    Login
+                    Login to NutriBox
                 </button>
 
             </form>
 
 
-            <p id="loginMessage"></p>
+            <p
+                id="loginMessage"
+                class="login-message"
+            ></p>
 
 
-            <p>
+            <div class="login-register">
+
                 Don't have an account?
-                <a href="register.html">Register here</a>
-            </p>
+
+                <a href="register.html">
+                    Create an account
+                </a>
+
+            </div>
+
+
+            <div class="login-home">
+
+                <a href="index.html">
+                    ← Back to NutriBox Home
+                </a>
+
+            </div>
 
         </div>
 

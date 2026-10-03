@@ -2,15 +2,22 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>NutriBox - Admin Dashboard</title>
 
     <link rel="stylesheet" href="style.css">
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script src="/socket.io/socket.io.js"></script>
+
 </head>
+
 
 <body>
 
@@ -21,84 +28,293 @@
     </div>
 
     <nav>
-        <a href="index.html">Home</a>
-        <a href="customer.html">Customer Dashboard</a>
-        <button onclick="adminLogout()">Logout</button>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="customer.html">
+            Customer Dashboard
+        </a>
+
+        <button
+            class="dashboard-logout"
+            onclick="adminLogout()"
+        >
+            Logout
+        </button>
+
     </nav>
 
 </header>
 
 
-<main class="dashboard">
-
-    <h1>Admin Dashboard</h1>
-
-    <p>
-        NutriBox Business Overview
-    </p>
+<main class="admin-dashboard-page">
 
 
-    <section class="dashboard-cards">
+    <!-- DASHBOARD HEADER -->
 
-        <div class="dashboard-card">
-            <h3>Total Sales</h3>
-            <p id="totalSales">₹0</p>
+    <div class="admin-heading">
+
+        <div>
+
+            <p class="dashboard-label">
+                NUTRIBOX BUSINESS ANALYTICS
+            </p>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Monitor sales, customers, orders and business performance.
+            </p>
+
         </div>
 
-        <div class="dashboard-card">
-            <h3>Total Orders</h3>
-            <p id="totalOrders">0</p>
+
+        <div class="admin-heading-icon">
+            📊
         </div>
 
-        <div class="dashboard-card">
-            <h3>Total Customers</h3>
-            <p id="totalCustomers">0</p>
-        </div>
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+
+    <section class="dashboard-cards admin-dashboard-cards">
+
 
         <div class="dashboard-card">
-            <h3>Total Meals Sold</h3>
-            <p id="totalMeals">0</p>
+
+            <div class="card-icon">
+                💰
+            </div>
+
+            <h3>
+                Total Sales
+            </h3>
+
+            <p id="totalSales">
+                ₹0
+            </p>
+
         </div>
 
-        <div class="dashboard-card">
-            <h3>Average Order Value</h3>
-            <p id="averageOrderValue">₹0</p>
-        </div>
 
         <div class="dashboard-card">
-            <h3>Customer Satisfaction</h3>
-            <p id="customerSatisfaction">0 / 5</p>
+
+            <div class="card-icon">
+                📦
+            </div>
+
+            <h3>
+                Total Orders
+            </h3>
+
+            <p id="totalOrders">
+                0
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                👥
+            </div>
+
+            <h3>
+                Total Customers
+            </h3>
+
+            <p id="totalCustomers">
+                0
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                🥗
+            </div>
+
+            <h3>
+                Total Meals Sold
+            </h3>
+
+            <p id="totalMeals">
+                0
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                📈
+            </div>
+
+            <h3>
+                Average Order Value
+            </h3>
+
+            <p id="averageOrderValue">
+                ₹0
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                ⭐
+            </div>
+
+            <h3>
+                Customer Satisfaction
+            </h3>
+
+            <p id="customerSatisfaction">
+                0 / 5
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ANALYTICS CHARTS -->
+
+    <section class="admin-analytics-section">
+
+        <div class="admin-section-heading">
+
+            <div>
+
+                <span class="section-icon">
+                    📊
+                </span>
+
+                <div>
+
+                    <h2>
+                        Business Analytics
+                    </h2>
+
+                    <p>
+                        Visual insights from NutriBox business data
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-charts-grid">
+
+
+            <div class="admin-chart-card">
+
+                <h3>
+                    Sales Over Time
+                </h3>
+
+                <p>
+                    Track NutriBox sales performance
+                </p>
+
+                <canvas id="salesChart"></canvas>
+
+            </div>
+
+
+            <div class="admin-chart-card">
+
+                <h3>
+                    Sales by Customer Type
+                </h3>
+
+                <p>
+                    Compare sales across customer segments
+                </p>
+
+                <canvas id="customerTypeChart"></canvas>
+
+            </div>
+
+
+            <div class="admin-chart-card">
+
+                <h3>
+                    Best-Selling Products
+                </h3>
+
+                <p>
+                    Products with the highest number of meals sold
+                </p>
+
+                <canvas id="productChart"></canvas>
+
+            </div>
+
+
+            <div class="admin-chart-card">
+
+                <h3>
+                    Order Status Overview
+                </h3>
+
+                <p>
+                    Current order processing status
+                </p>
+
+                <canvas id="orderStatusChart"></canvas>
+
+            </div>
+
+
         </div>
 
     </section>
 
-    <section class="charts-section">
 
-    <div class="chart-box">
-        <h2>Sales Over Time</h2>
-        <canvas id="salesChart"></canvas>
-    </div>
+    <!-- RECENT ORDERS -->
 
-    <div class="chart-box">
-        <h2>Sales by Customer Type</h2>
-        <canvas id="customerTypeChart"></canvas>
-    </div>
+    <section class="admin-table-section">
 
-    <div class="chart-box">
-        <h2>Best-Selling Products</h2>
-        <canvas id="productChart"></canvas>
-    </div>
+        <div class="admin-section-heading">
 
-    <div class="chart-box">
-        <h2>Order Status Overview</h2>
-        <canvas id="orderStatusChart"></canvas>
-    </div>
+            <div>
 
-    </section>
+                <span class="section-icon">
+                    📦
+                </span>
 
-    <section class="orders-section">
+                <div>
 
-        <h2>Recent Orders</h2>
+                    <h2>
+                        Recent Orders
+                    </h2>
+
+                    <p>
+                        Monitor and update recent customer orders
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
 
         <div class="table-container">
 
@@ -107,22 +323,44 @@
                 <thead>
 
                     <tr>
-                        <th>Customer</th>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Status</th>
-                        <th>Date</th>
+
+                        <th>
+                            Customer
+                        </th>
+
+                        <th>
+                            Product
+                        </th>
+
+                        <th>
+                            Quantity
+                        </th>
+
+                        <th>
+                            Total
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
                     </tr>
 
                 </thead>
 
+
                 <tbody id="adminOrdersTable">
 
                     <tr>
+
                         <td colspan="6">
                             Loading orders...
                         </td>
+
                     </tr>
 
                 </tbody>
@@ -133,45 +371,93 @@
 
     </section>
 
-    <section class="ai-agent-section">
 
-        <h2>🤖 NutriBox AI Analytics Assistant</h2>
+    <!-- AI AGENT -->
 
-        <p>
-            Ask the AI assistant about NutriBox sales, orders, customers and products.
-        </p>
+    <section class="ai-agent-section admin-ai-section">
 
-        <div class="ai-chat-box">
-            <div class="ai-suggestions">
-                <button onclick="askSuggestedQuestion('What is the total sales and total number of orders?')">
-                    📊 Sales Summary
-                </button>
 
-                <button onclick="askSuggestedQuestion('Which product is selling the most?')">
-                    🏆 Best-Selling Product
-                </button>
+        <div class="admin-section-heading">
 
-                <button onclick="askSuggestedQuestion('How many customers does NutriBox have?')">
-                    👥 Customer Analysis
-                </button>
+            <div>
 
-                <button onclick="askSuggestedQuestion('What is the current order status distribution?')">
-                    📦 Order Status
-                </button>
+                <span class="section-icon">
+                    🤖
+                </span>
 
-                <button onclick="askSuggestedQuestion('Give me a business recommendation for NutriBox.')">
-                    💡 Business Recommendation
-                </button>
-            </div>
+                <div>
 
-            <div id="aiMessages" class="ai-messages">
+                    <h2>
+                        NutriBox AI Analytics Assistant
+                    </h2>
 
-                <div class="ai-message">
-                    Hello! I am the NutriBox Analytics Assistant.
-                    Ask me about your dashboard data.
+                    <p>
+                        Ask questions about sales, orders, customers and products.
+                    </p>
+
                 </div>
 
             </div>
+
+        </div>
+
+
+        <div class="ai-chat-box">
+
+
+            <div class="ai-suggestions">
+
+                <button
+                    onclick="askSuggestedQuestion('What is the total sales and total number of orders?')"
+                >
+                    📊 Sales Summary
+                </button>
+
+
+                <button
+                    onclick="askSuggestedQuestion('Which product is selling the most?')"
+                >
+                    🏆 Best-Selling Product
+                </button>
+
+
+                <button
+                    onclick="askSuggestedQuestion('How many customers does NutriBox have?')"
+                >
+                    👥 Customer Analysis
+                </button>
+
+
+                <button
+                    onclick="askSuggestedQuestion('What is the current order status distribution?')"
+                >
+                    📦 Order Status
+                </button>
+
+
+                <button
+                    onclick="askSuggestedQuestion('Give me a business recommendation for NutriBox.')"
+                >
+                    💡 Business Recommendation
+                </button>
+
+            </div>
+
+
+            <div
+                id="aiMessages"
+                class="ai-messages"
+            >
+
+                <div class="ai-message">
+
+                    Hello! I am the NutriBox Analytics Assistant.
+                    Ask me about your dashboard data.
+
+                </div>
+
+            </div>
+
 
             <div class="ai-input-area">
 
@@ -181,38 +467,98 @@
                     placeholder="Ask about sales, orders, customers..."
                 >
 
-                <button onclick="askAIAgent()">
+
+                <button
+                    onclick="askAIAgent()"
+                >
                     Ask AI
                 </button>
 
             </div>
 
+
         </div>
 
     </section>
 
-    <section class="feedback-section">
-        <h2>Customer Feedback</h2>
+
+    <!-- CUSTOMER FEEDBACK -->
+
+    <section class="admin-table-section">
+
+
+        <div class="admin-section-heading">
+
+            <div>
+
+                <span class="section-icon">
+                    ⭐
+                </span>
+
+                <div>
+
+                    <h2>
+                        Customer Feedback
+                    </h2>
+
+                    <p>
+                        Review customer ratings and comments
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
 
         <div class="table-container">
+
             <table>
+
                 <thead>
+
                     <tr>
-                        <th>Customer</th>
-                        <th>Rating</th>
-                        <th>Comment</th>
-                        <th>Date</th>
+
+                        <th>
+                            Customer
+                        </th>
+
+                        <th>
+                            Rating
+                        </th>
+
+                        <th>
+                            Comment
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
                     </tr>
+
                 </thead>
 
+
                 <tbody id="feedbackTable">
+
                     <tr>
-                        <td colspan="4">Loading feedback...</td>
+
+                        <td colspan="4">
+                            Loading feedback...
+                        </td>
+
                     </tr>
+
                 </tbody>
+
             </table>
+
         </div>
+
     </section>
+
 
 </main>
 
