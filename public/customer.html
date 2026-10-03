@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>NutriBox - Customer Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            NutriBox
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#products">
+                Products
+            </a>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- CUSTOMER DASHBOARD -->
+
+    <main class="dashboard">
+
+        <h1>
+            Customer Dashboard
+        </h1>
+
+        <p id="welcomeMessage">
+            Welcome to NutriBox
+        </p>
+
+
+        <!-- CUSTOMER INFORMATION -->
+
+        <section class="customer-info">
+
+            <h2>
+                Customer Information
+            </h2>
+
+            <div class="info-grid">
+
+                <div>
+                    <strong>Organization</strong>
+                    <p id="organizationName">-</p>
+                </div>
+
+                <div>
+                    <strong>Customer Type</strong>
+                    <p id="customerType">-</p>
+                </div>
+
+                <div>
+                    <strong>Contact Person</strong>
+                    <p id="contactPerson">-</p>
+                </div>
+
+                <div>
+                    <strong>Email</strong>
+                    <p id="email">-</p>
+                </div>
+
+                <div>
+                    <strong>Phone</strong>
+                    <p id="phone">-</p>
+                </div>
+
+                <div>
+                    <strong>Location</strong>
+                    <p id="location">-</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <section class="dashboard-cards">
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Total Orders
+                </h3>
+
+                <p id="totalOrders">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Total Meals Ordered
+                </h3>
+
+                <p id="totalMeals">
+                    0
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Total Spending
+                </h3>
+
+                <p id="totalSpending">
+                    ₹0
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Average Order Value
+                </h3>
+
+                <p id="averageOrderValue">
+                    ₹0
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>
+                    Customer Satisfaction
+                </h3>
+
+                <p id="customerSatisfaction">
+                    0 / 5
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECENT ORDERS -->
+
+        <section class="orders-section">
+
+            <h2>Recent Orders</h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Order Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="ordersTable">
+
+                        <tr>
+                            <td colspan="5">
+                                Loading orders...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <section class="orders-section">
+
+            <h2>Order History</h2>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price / Unit</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Order Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="orderHistoryTable">
+
+                        <tr>
+                            <td colspan="6">
+                                Loading order history...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>  
+        
+        <section class="feedback-section">
+            <h2>Give Your Feedback</h2>
+
+            <div class="feedback-box">
+
+                <label for="feedbackOrder">Select Order</label>
+
+                <select id="feedbackOrder">
+                    <option value="">Select an order</option>
+                </select>
+
+                <label for="feedbackRating">Rating</label>
+
+                <select id="feedbackRating">
+                    <option value="">Select rating</option>
+                    <option value="5">5 - Excellent</option>
+                    <option value="4">4 - Very Good</option>
+                    <option value="3">3 - Good</option>
+                    <option value="2">2 - Average</option>
+                    <option value="1">1 - Poor</option>
+                </select>
+
+                <label for="feedbackComment">Comment</label>
+
+                <textarea
+                    id="feedbackComment"
+                    rows="4"
+                    placeholder="Enter your feedback">
+                </textarea>
+
+                <button onclick="submitFeedback()">
+                    Submit Feedback
+                </button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="customer.js"></script>
+
+</body>
+
+</html>

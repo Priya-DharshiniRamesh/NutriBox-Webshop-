@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NutriBox - Customer Registration</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            NutriBox
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#products">Products</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <section class="registration-section">
+
+        <div class="registration-container">
+
+            <h1>Customer Registration</h1>
+
+            <p>
+                Register your organization with NutriBox
+            </p>
+
+
+            <form id="registrationForm">
+
+                <label for="organizationName">
+                    Organization Name
+                </label>
+
+                <input
+                    type="text"
+                    id="organizationName"
+                    placeholder="Enter organization name"
+                    required
+                >
+
+
+                <label for="customerType">
+                    Customer Type
+                </label>
+
+                <select id="customerType" required>
+
+                    <option value="">
+                        Select customer type
+                    </option>
+
+                    <option value="Gym / Fitness Centre">
+                        Gym / Fitness Centre
+                    </option>
+
+                    <option value="Corporate Office">
+                        Corporate Office
+                    </option>
+
+                    <option value="College Hostel">
+                        College Hostel
+                    </option>
+
+                    <option value="Hospital / Wellness Centre">
+                        Hospital / Wellness Centre
+                    </option>
+
+                    <option value="Hotel / Cafeteria">
+                        Hotel / Cafeteria
+                    </option>
+
+                    <option value="Sports Academy">
+                        Sports Academy
+                    </option>
+
+                </select>
+
+
+                <label for="contactPerson">
+                    Contact Person
+                </label>
+
+                <input
+                    type="text"
+                    id="contactPerson"
+                    placeholder="Enter contact person name"
+                    required
+                >
+
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter email address"
+                    required
+                >
+
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter phone number"
+                    required
+                >
+
+
+                <label for="location">
+                    Location
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Enter city"
+                    required
+                >
+
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+
+                <button type="submit">
+                    Register
+                </button>
+
+            </form>
+
+
+            <p id="registrationMessage"></p>
+
+
+            <p>
+                Already registered?
+                <a href="login.html">Login here</a>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <script src="register.js"></script>
+
+</body>
+
+</html>

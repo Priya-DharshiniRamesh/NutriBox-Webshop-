@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NutriBox - Eat Smart. Live Strong.</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo">
+            NutriBox
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="customer.html">Customer Dashboard</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <h1>Eat Smart. Live Strong.</h1>
+
+            <p>
+                Healthy meal boxes and nutritious snacks for
+                gyms, offices, hostels, hospitals and sports academies.
+            </p>
+
+            <a href="#products" class="btn">
+                Explore Products
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="products-section">
+
+        <h2>Our Products</h2>
+
+        <p class="section-text">
+            Nutritious food solutions designed for bulk B2B orders.
+        </p>
+
+
+        <!-- PRODUCTS WILL COME FROM MONGODB -->
+        <div class="product-container" id="productList">
+
+            <p>Loading NutriBox products...</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section">
+
+        <h2>Why NutriBox?</h2>
+
+
+        <div class="features">
+
+            <div>
+                <h3>🥗 Healthy</h3>
+
+                <p>
+                    Balanced and nutritious food options.
+                </p>
+            </div>
+
+
+            <div>
+                <h3>📦 Bulk Orders</h3>
+
+                <p>
+                    Designed for organizations and institutions.
+                </p>
+            </div>
+
+
+            <div>
+                <h3>🚚 Reliable Delivery</h3>
+
+                <p>
+                    Planned delivery for regular customers.
+                </p>
+            </div>
+
+
+            <div>
+                <h3>📊 Smart Dashboard</h3>
+
+                <p>
+                    Track orders, spending and performance.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+
+        <h2>Contact NutriBox</h2>
+
+        <p>
+            Email: nutribox@gmail.com
+        </p>
+
+        <p>
+            Phone: +91 63858 32452
+        </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 NutriBox | Eat Smart. Live Strong.
+        </p>
+
+    </footer>
+<div id="orderModal" class="order-modal">
+
+    <div class="order-box">
+
+        <h2>Place NutriBox Order</h2>
+
+        <p>
+            <strong>Product:</strong>
+            <span id="orderProductName"></span>
+        </p>
+
+        <p>
+            <strong>Price:</strong>
+            <span id="orderProductPrice"></span>
+        </p>
+
+        <label for="quantity">
+            Quantity
+        </label>
+
+        <input
+            type="number"
+            id="quantity"
+            min="1"
+            value="1"
+        >
+
+        <div class="order-buttons">
+
+            <button onclick="placeOrder()">
+                Place Order
+            </button>
+
+            <button onclick="closeOrderForm()">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
