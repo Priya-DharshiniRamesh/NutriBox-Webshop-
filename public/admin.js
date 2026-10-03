@@ -7,22 +7,24 @@ if (adminLoggedIn !== "true") {
 
 const socket = io();
 
+let salesChartInstance = null;
+let customerTypeChartInstance = null;
+let productChartInstance = null;
+let orderStatusChartInstance = null;
+
 async function loadAdminDashboard() {
 
     try {
 
-        const response =
+        const dashboardResponse =
             await fetch("/api/admin/dashboard");
 
-        if (!response.ok) {
+        if (!dashboardResponse.ok) {
             throw new Error("Failed to load admin dashboard");
         }
 
         const data =
-            await response.json();
-
-
-        // Dashboard cards
+            await dashboardResponse.json();
 
         document.getElementById("totalSales").textContent =
             `₹${data.totalSales.toLocaleString()}`;
@@ -42,22 +44,31 @@ async function loadAdminDashboard() {
         document.getElementById("customerSatisfaction").textContent =
             `${data.customerSatisfaction} / 5`;
 
-
-        // Display recent orders
-
         displayAdminOrders(data.recentOrders);
 
+        const analyticsResponse =
+            await fetch("/api/admin/analytics");
 
-        // Create charts
+        if (!analyticsResponse.ok) {
+            throw new Error("Failed to load analytics");
+        }
 
-        createSalesChart(data.recentOrders);
+        const analytics =
+            await analyticsResponse.json();
 
-        createCustomerTypeChart(data.recentOrders);
+        createSalesChart(analytics.salesByDate);
 
-        createProductChart(data.recentOrders);
+        createCustomerTypeChart(
+            analytics.salesByCustomerType
+        );
 
-        createOrderStatusChart(data.recentOrders);
+        createProductChart(
+            analytics.productsSold
+        );
 
+        createOrderStatusChart(
+            analytics.orderStatuses
+        );
 
     } catch (error) {
 
@@ -70,14 +81,12 @@ async function loadAdminDashboard() {
 
 }
 
-
 function displayAdminOrders(orders) {
 
     const table =
         document.getElementById("adminOrdersTable");
 
     table.innerHTML = "";
-
 
     orders.forEach(order => {
 
@@ -87,7 +96,6 @@ function displayAdminOrders(orders) {
         const date =
             new Date(order.orderDate)
                 .toLocaleDateString();
-
 
         row.innerHTML = `
 
@@ -101,29 +109,37 @@ function displayAdminOrders(orders) {
 
             <td>
                 <select onchange="updateOrderStatus('${order._id}', this.value)">
-                    <option value="Pending" ${order.orderStatus === "Pending" ? "selected" : ""}>
+
+                    <option value="Pending"
+                        ${order.orderStatus === "Pending" ? "selected" : ""}>
                         Pending
                     </option>
 
-                    <option value="Confirmed" ${order.orderStatus === "Confirmed" ? "selected" : ""}>
+                    <option value="Confirmed"
+                        ${order.orderStatus === "Confirmed" ? "selected" : ""}>
                         Confirmed
                     </option>
 
-                    <option value="Preparing" ${order.orderStatus === "Preparing" ? "selected" : ""}>
+                    <option value="Preparing"
+                        ${order.orderStatus === "Preparing" ? "selected" : ""}>
                         Preparing
                     </option>
 
-                    <option value="Out for Delivery" ${order.orderStatus === "Out for Delivery" ? "selected" : ""}>
+                    <option value="Out for Delivery"
+                        ${order.orderStatus === "Out for Delivery" ? "selected" : ""}>
                         Out for Delivery
                     </option>
 
-                    <option value="Delivered" ${order.orderStatus === "Delivered" ? "selected" : ""}>
+                    <option value="Delivered"
+                        ${order.orderStatus === "Delivered" ? "selected" : ""}>
                         Delivered
                     </option>
 
-                    <option value="Cancelled" ${order.orderStatus === "Cancelled" ? "selected" : ""}>
+                    <option value="Cancelled"
+                        ${order.orderStatus === "Cancelled" ? "selected" : ""}>
                         Cancelled
                     </option>
+
                 </select>
             </td>
 
@@ -131,54 +147,43 @@ function displayAdminOrders(orders) {
 
         `;
 
-
         table.appendChild(row);
 
     });
 
 }
 
+function createSalesChart(salesByDate) {
 
-// Sales Over Time
+    const labels =
+        Object.keys(salesByDate);
 
-function createSalesChart(orders) {
+    const values =
+        Object.values(salesByDate);
 
-    const salesByDate = {};
+    if (salesChartInstance) {
+        salesChartInstance.destroy();
+    }
 
-    orders.forEach(order => {
-
-        const date =
-            new Date(order.orderDate)
-                .toLocaleDateString();
-
-        if (!salesByDate[date]) {
-            salesByDate[date] = 0;
-        }
-
-        salesByDate[date] += order.totalAmount;
-
-    });
-
-
-    new Chart(
+    salesChartInstance = new Chart(
         document.getElementById("salesChart"),
         {
             type: "line",
 
             data: {
 
-                labels:
-                    Object.keys(salesByDate),
+                labels: labels,
 
                 datasets: [
 
                     {
                         label: "Sales",
 
-                        data:
-                            Object.values(salesByDate),
+                        data: values,
 
-                        borderWidth: 2
+                        borderWidth: 2,
+
+                        tension: 0.3
                     }
 
                 ]
@@ -186,51 +191,46 @@ function createSalesChart(orders) {
             },
 
             options: {
-                responsive: true
+
+                responsive: true,
+
+               
             }
+
         }
     );
 
 }
 
+function createCustomerTypeChart(
+    salesByCustomerType
+) {
 
-// Sales by Customer Type
+    const labels =
+        Object.keys(salesByCustomerType);
 
-function createCustomerTypeChart(orders) {
+    const values =
+        Object.values(salesByCustomerType);
 
-    const customerTypes = {};
+    if (customerTypeChartInstance) {
+        customerTypeChartInstance.destroy();
+    }
 
-    orders.forEach(order => {
-
-        const type =
-            order.customerType;
-
-        if (!customerTypes[type]) {
-            customerTypes[type] = 0;
-        }
-
-        customerTypes[type] += order.totalAmount;
-
-    });
-
-
-    new Chart(
+    customerTypeChartInstance = new Chart(
         document.getElementById("customerTypeChart"),
         {
             type: "bar",
 
             data: {
 
-                labels:
-                    Object.keys(customerTypes),
+                labels: labels,
 
                 datasets: [
 
                     {
                         label: "Sales",
 
-                        data:
-                            Object.values(customerTypes),
+                        data: values,
 
                         borderWidth: 1
                     }
@@ -240,7 +240,11 @@ function createCustomerTypeChart(orders) {
             },
 
             options: {
-                responsive: true
+
+                responsive: true,
+
+                
+
             }
 
         }
@@ -248,44 +252,33 @@ function createCustomerTypeChart(orders) {
 
 }
 
+function createProductChart(productsSold) {
 
-// Best-Selling Products
+    const labels =
+        Object.keys(productsSold);
 
-function createProductChart(orders) {
+    const values =
+        Object.values(productsSold);
 
-    const products = {};
+    if (productChartInstance) {
+        productChartInstance.destroy();
+    }
 
-    orders.forEach(order => {
-
-        const product =
-            order.productName;
-
-        if (!products[product]) {
-            products[product] = 0;
-        }
-
-        products[product] += order.quantity;
-
-    });
-
-
-    new Chart(
+    productChartInstance = new Chart(
         document.getElementById("productChart"),
         {
             type: "bar",
 
             data: {
 
-                labels:
-                    Object.keys(products),
+                labels: labels,
 
                 datasets: [
 
                     {
                         label: "Quantity Sold",
 
-                        data:
-                            Object.values(products),
+                        data: values,
 
                         borderWidth: 1
                     }
@@ -295,7 +288,11 @@ function createProductChart(orders) {
             },
 
             options: {
-                responsive: true
+
+                responsive: true,
+
+              
+
             }
 
         }
@@ -303,44 +300,33 @@ function createProductChart(orders) {
 
 }
 
+function createOrderStatusChart(orderStatuses) {
 
-// Order Status Overview
+    const labels =
+        Object.keys(orderStatuses);
 
-function createOrderStatusChart(orders) {
+    const values =
+        Object.values(orderStatuses);
 
-    const statuses = {};
+    if (orderStatusChartInstance) {
+        orderStatusChartInstance.destroy();
+    }
 
-    orders.forEach(order => {
-
-        const status =
-            order.orderStatus;
-
-        if (!statuses[status]) {
-            statuses[status] = 0;
-        }
-
-        statuses[status]++;
-
-    });
-
-
-    new Chart(
+    orderStatusChartInstance = new Chart(
         document.getElementById("orderStatusChart"),
         {
             type: "doughnut",
 
             data: {
 
-                labels:
-                    Object.keys(statuses),
+                labels: labels,
 
                 datasets: [
 
                     {
                         label: "Orders",
 
-                        data:
-                            Object.values(statuses),
+                        data: values,
 
                         borderWidth: 1
                     }
@@ -350,7 +336,10 @@ function createOrderStatusChart(orders) {
             },
 
             options: {
-                responsive: true
+
+                responsive: true,
+
+
             }
 
         }
@@ -358,48 +347,58 @@ function createOrderStatusChart(orders) {
 
 }
 
-
 loadAdminDashboard();
 
 socket.on("newOrder", (order) => {
 
-    console.log("New order received:", order);
+    console.log(
+        "New order received:",
+        order
+    );
 
     alert(
         "New NutriBox order received!\n\n" +
-        "Customer: " + order.customerName +
-        "\nProduct: " + order.productName +
-        "\nQuantity: " + order.quantity +
-        "\nTotal: ₹" + order.totalAmount
+        "Customer: " +
+        order.customerName +
+        "\nProduct: " +
+        order.productName +
+        "\nQuantity: " +
+        order.quantity +
+        "\nTotal: ₹" +
+        order.totalAmount
     );
 
     loadAdminDashboard();
 
 });
 
-async function updateOrderStatus(orderId, newStatus) {
+async function updateOrderStatus(
+    orderId,
+    newStatus
+) {
 
     try {
 
         const response =
-            await fetch(`/api/orders/${orderId}/status`, {
+            await fetch(
+                `/api/orders/${orderId}/status`,
+                {
+                    method: "PUT",
 
-                method: "PUT",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    orderStatus: newStatus
-                })
-
-            });
-
+                    body: JSON.stringify({
+                        orderStatus:
+                            newStatus
+                    })
+                }
+            );
 
         const data =
             await response.json();
-
 
         if (!response.ok) {
 
@@ -411,15 +410,12 @@ async function updateOrderStatus(orderId, newStatus) {
             return;
         }
 
-
         alert(
             "Order status updated to " +
             newStatus
         );
 
-
         loadAdminDashboard();
-
 
     } catch (error) {
 
@@ -437,102 +433,178 @@ async function updateOrderStatus(orderId, newStatus) {
 }
 
 async function loadFeedback() {
+
     const feedbackTable =
-        document.getElementById("feedbackTable");
+        document.getElementById(
+            "feedbackTable"
+        );
 
     try {
-        const response =
-            await fetch("/api/admin/feedback");
 
-        const feedback = await response.json();
+        const response =
+            await fetch(
+                "/api/admin/feedback"
+            );
+
+        const feedback =
+            await response.json();
 
         feedbackTable.innerHTML = "";
 
         if (feedback.length === 0) {
+
             feedbackTable.innerHTML =
                 '<tr><td colspan="4">No feedback available.</td></tr>';
+
             return;
         }
 
         feedback.forEach(item => {
-            const row = document.createElement("tr");
+
+            const row =
+                document.createElement("tr");
 
             row.innerHTML = `
-                <td>${item.customerName}</td>
-                <td>${item.rating}/5</td>
-                <td>${item.comment}</td>
-                <td>${new Date(item.createdAt).toLocaleDateString()}</td>
+
+                <td>
+                    ${item.customerName}
+                </td>
+
+                <td>
+                    ${item.rating}/5
+                </td>
+
+                <td>
+                    ${item.comment}
+                </td>
+
+                <td>
+                    ${new Date(
+                        item.createdAt
+                    ).toLocaleDateString()}
+                </td>
+
             `;
 
             feedbackTable.appendChild(row);
+
         });
 
     } catch (error) {
-        console.error("Feedback loading error:", error);
+
+        console.error(
+            "Feedback loading error:",
+            error
+        );
 
         feedbackTable.innerHTML =
             '<tr><td colspan="4">Unable to load feedback.</td></tr>';
+
     }
+
 }
 
 loadFeedback();
 
 function adminLogout() {
-    localStorage.removeItem("nutriboxAdmin");
 
-    window.location.href = "admin-login.html";
+    localStorage.removeItem(
+        "nutriboxAdmin"
+    );
+
+    window.location.href =
+        "admin-login.html";
+
 }
 
+function askSuggestedQuestion(
+    question
+) {
 
-function askSuggestedQuestion(question) {
-    document.getElementById("aiQuestion").value = question;
+    document.getElementById(
+        "aiQuestion"
+    ).value = question;
+
     askAIAgent();
+
 }
 
 async function askAIAgent() {
+
     const questionInput =
-        document.getElementById("aiQuestion");
+        document.getElementById(
+            "aiQuestion"
+        );
 
     const messages =
-        document.getElementById("aiMessages");
+        document.getElementById(
+            "aiMessages"
+        );
 
     const question =
         questionInput.value.trim();
 
     if (!question) {
-        alert("Please enter a question.");
+
+        alert(
+            "Please enter a question."
+        );
+
         return;
     }
 
     messages.innerHTML += `
+
         <div class="user-message">
-            <strong>You:</strong> ${question}
+
+            <strong>You:</strong>
+            ${question}
+
         </div>
+
     `;
 
     questionInput.value = "";
 
     messages.innerHTML += `
-        <div class="ai-message" id="aiLoading">
+
+        <div
+            class="ai-message"
+            id="aiLoading"
+        >
+
             🤖 Analyzing NutriBox data...
+
         </div>
+
     `;
 
     try {
-        const response = await fetch("/api/ai-agent", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                question: question
-            })
-        });
 
-        const data = await response.json();
+        const response =
+            await fetch(
+                "/api/ai-agent",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        question: question
+                    })
+                }
+            );
+
+        const data =
+            await response.json();
 
         const loadingMessage =
-            document.getElementById("aiLoading");
+            document.getElementById(
+                "aiLoading"
+            );
 
         if (loadingMessage) {
             loadingMessage.remove();
@@ -541,37 +613,63 @@ async function askAIAgent() {
         if (response.ok) {
 
             messages.innerHTML += `
+
                 <div class="ai-message">
-                    <strong>🤖 NutriBox AI:</strong>
-                    <p>${data.answer}</p>
+
+                    <strong>
+                        🤖 NutriBox AI:
+                    </strong>
+
+                    <p>
+                        ${data.answer}
+                    </p>
+
                 </div>
+
             `;
 
         } else {
 
             messages.innerHTML += `
+
                 <div class="ai-message">
+
                     AI Agent error:
                     ${data.message}
+
                 </div>
+
             `;
+
         }
 
     } catch (error) {
 
-        console.error("AI Agent error:", error);
+        console.error(
+            "AI Agent error:",
+            error
+        );
 
         const loadingMessage =
-            document.getElementById("aiLoading");
+            document.getElementById(
+                "aiLoading"
+            );
 
         if (loadingMessage) {
             loadingMessage.remove();
         }
 
         messages.innerHTML += `
+
             <div class="ai-message">
-                Unable to connect to the AI Agent.
+
+                Unable to connect
+                to the AI Agent.
+
             </div>
+
         `;
+
     }
+
 }
