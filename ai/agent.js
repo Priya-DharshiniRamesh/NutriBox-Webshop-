@@ -1,8 +1,10 @@
 const OpenAI = require("openai");
 
-const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-});
+const client = process.env.OPENAI_API_KEY
+    ? new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY
+    })
+    : null;
 
 function localNutriBoxAgent(question, businessData) {
     const q = question.toLowerCase();
@@ -106,6 +108,9 @@ function localNutriBoxAgent(question, businessData) {
 }
 
 async function runNutriBoxAgent(question, businessData) {
+    if (!client) {
+        return localNutriBoxAgent(question, businessData);
+    }
 
     try {
         const prompt = `
