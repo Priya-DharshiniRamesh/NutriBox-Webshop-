@@ -171,6 +171,48 @@ app.delete("/api/products/:id", async (req, res) => {
     }
 });
 
+app.post("/api/customers/forgot-password", async (req, res) => {
+    try {
+        const { email, newPassword } = req.body;
+
+        if (!email || !newPassword) {
+            return res.status(400).json({
+                message: "Email and new password are required."
+            });
+        }
+
+        if (newPassword.length < 6) {
+            return res.status(400).json({
+                message: "Password must contain at least 6 characters."
+            });
+        }
+
+        const customer = await Customer.findOne({ email });
+
+        if (!customer) {
+            return res.status(404).json({
+                message: "No customer account found with this email."
+            });
+        }
+
+        customer.password = newPassword;
+
+        await customer.save();
+
+        res.json({
+            message: "Password reset successfully."
+        });
+
+    } catch (error) {
+        console.error("Forgot password error:", error);
+
+        res.status(500).json({
+            message: "Unable to reset password."
+        });
+    }
+});
+
+
 app.post("/api/customers/register", async (req, res) => {
 
     try {
