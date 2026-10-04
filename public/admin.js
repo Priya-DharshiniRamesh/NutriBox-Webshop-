@@ -673,3 +673,259 @@ async function askAIAgent() {
     }
 
 }
+
+// ===============================
+// PRODUCT MANAGEMENT
+// ===============================
+
+async function loadAdminProducts() {
+    const productList = document.getElementById("adminProductList");
+
+    if (!productList) return;
+
+    try {
+        const response = await fetch("/api/products");
+        const products = await response.json();
+
+        if (!response.ok) {
+            throw new Error("Failed to load products");
+        }
+
+        productList.innerHTML = "";
+
+        if (products.length === 0) {
+            productList.innerHTML = "<p>No products available.</p>";
+            return;
+        }
+
+        products.forEach(product => {
+            const productCard = document.createElement("div");
+
+            productCard.className = "admin-product-card";
+
+            productCard.innerHTML = `
+                <div>
+                    <h4>${product.name}</h4>
+                    <p><strong>Category:</strong> ${product.category}</p>
+                    <p>${product.description}</p>
+                    <p>
+                        <strong>Price:</strong>
+                        ₹${product.price} / ${product.unit}
+                    </p>
+                    <p>
+                        <strong>Status:</strong>
+                        ${product.available ? "Available" : "Unavailable"}
+                    </p>
+                </div>
+
+                <div class="admin-product-actions">
+                    <button onclick='editProduct(${JSON.stringify(product)})'>
+                        ✏️ Edit
+                    </button>
+
+                    <button onclick="deleteProduct('${product._id}')">
+                        🗑️ Delete
+                    </button>
+                </div>
+            `;
+
+            productList.appendChild(productCard);
+        });
+
+    } catch (error) {
+        console.error("Product loading error:", error);
+
+        productList.innerHTML =
+            "<p>Unable to load products.</p>";
+    }
+}
+
+
+async function saveProduct() {
+
+    const productId =
+        document.getElementById("productId").value;
+
+    const name =
+        document.getElementById("productName").value.trim();
+
+    const category =
+        document.getElementById("productCategory").value.trim();
+
+    const description =
+        document.getElementById("productDescription").value.trim();
+
+    const price =
+        document.getElementById("productPrice").value;
+
+    const unit =
+        document.getElementById("productUnit").value.trim();
+
+    if (!name || !category || !description || !price || !unit) {
+        alert("Please fill in all product fields.");
+        return;
+    }
+
+    const productData = {
+        name,
+        category,
+        description,
+        price: Number(price),
+        unit
+    };
+
+    try {
+
+        let response;
+
+        if (productId) {
+
+            response = await fetch(
+                `/api/products/${productId}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        ...productData,
+                        available: true
+                    })
+                }
+            );
+
+        } else {
+
+            response = await fetch(
+                "/api/products",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(productData)
+                }
+            );
+        }
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.message || "Unable to save product.");
+            return;
+        }
+
+        alert(
+            productId
+                ? "Product updated successfully!"
+                : "Product added successfully!"
+        );
+
+        clearProductForm();
+
+        loadAdminProducts();
+
+    } catch (error) {
+
+        console.error("Product save error:", error);
+
+        alert("Unable to connect to the server.");
+    }
+}
+
+
+function editProduct(product) {
+
+    document.getElementById("productId").value =
+        product._id;
+
+    document.getElementById("productName").value =
+        product.name;
+
+    document.getElementById("productCategory").value =
+        product.category;
+
+    document.getElementById("productDescription").value =
+        product.description;
+
+    document.getElementById("productPrice").value =
+        product.price;
+
+    document.getElementById("productUnit").value =
+        product.unit;
+
+    document.getElementById("productFormTitle").textContent =
+        "Edit Product";
+
+    document.getElementById("cancelEditButton").style.display =
+        "inline-block";
+}
+
+
+function cancelProductEdit() {
+    clearProductForm();
+}
+
+
+function clearProductForm() {
+
+    document.getElementById("productId").value = "";
+
+    document.getElementById("productName").value = "";
+
+    document.getElementById("productCategory").value = "";
+
+    document.getElementById("productDescription").value = "";
+
+    document.getElementById("productPrice").value = "";
+
+    document.getElementById("productUnit").value = "";
+
+    document.getElementById("productFormTitle").textContent =
+        "Add New Product";
+
+    document.getElementById("cancelEditButton").style.display =
+        "none";
+}
+
+
+async function deleteProduct(productId) {
+
+    const confirmDelete =
+        confirm("Are you sure you want to delete this product?");
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `/api/products/${productId}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.message || "Unable to delete product.");
+            return;
+        }
+
+        alert("Product deleted successfully!");
+
+        loadAdminProducts();
+
+    } catch (error) {
+
+        console.error("Product deletion error:", error);
+
+        alert("Unable to connect to the server.");
+    }
+}
+
+
+// Load products when admin dashboard opens
+loadAdminProducts();

@@ -371,6 +371,72 @@
 
     </section>
 
+    <section class="product-management">
+        <h2>📦 Product Management</h2>
+        <p class="section-description">
+            Add, edit, delete and manage NutriBox products.
+        </p>
+
+        <div class="product-form">
+            <h3 id="productFormTitle">Add New Product</h3>
+
+            <input type="hidden" id="productId">
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="Product Name"
+            >
+
+            <input
+                type="text"
+                id="productCategory"
+                placeholder="Category"
+            >
+
+            <textarea
+                id="productDescription"
+                placeholder="Product Description"
+            ></textarea>
+
+            <input
+                type="number"
+                id="productPrice"
+                placeholder="Price"
+                min="1"
+            >
+
+            <input
+                type="text"
+                id="productUnit"
+                placeholder="Unit (Box, Pack, etc.)"
+            >
+
+            <div class="product-form-buttons">
+                <button onclick="saveProduct()">
+                    ➕ Add Product
+                </button>
+
+                <button
+                    type="button"
+                    onclick="cancelProductEdit()"
+                    id="cancelEditButton"
+                    style="display:none;"
+                >
+                    Cancel Edit
+                </button>
+            </div>
+        </div>
+
+        <div class="product-list-section">
+            <h3>Current Products</h3>
+
+            <div id="adminProductList">
+                Loading products...
+            </div>
+        </div>
+    </section>
+
 
     <!-- AI AGENT -->
 

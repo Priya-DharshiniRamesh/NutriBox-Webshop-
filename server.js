@@ -42,6 +42,135 @@ app.get("/api/products", async (req, res) => {
     }
 });
 
+app.post("/api/products", async (req, res) => {
+    try {
+        const {
+            name,
+            category,
+            description,
+            price,
+            unit
+        } = req.body;
+
+        if (
+            !name ||
+            !category ||
+            !description ||
+            !price ||
+            !unit
+        ) {
+            return res.status(400).json({
+                message: "Please fill in all product fields."
+            });
+        }
+
+        const product = new Product({
+            name,
+            category,
+            description,
+            price: Number(price),
+            unit,
+            available: true
+        });
+
+        await product.save();
+
+        res.status(201).json({
+            message: "Product added successfully.",
+            product
+        });
+
+    } catch (error) {
+        console.error("Product creation error:", error);
+
+        res.status(500).json({
+            message: "Failed to add product.",
+            error: error.message
+        });
+    }
+});
+
+
+app.put("/api/products/:id", async (req, res) => {
+    try {
+        const productId = req.params.id;
+
+        const {
+            name,
+            category,
+            description,
+            price,
+            unit,
+            available
+        } = req.body;
+
+        const product = await Product.findByIdAndUpdate(
+            productId,
+            {
+                name,
+                category,
+                description,
+                price: Number(price),
+                unit,
+                available
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        );
+
+        if (!product) {
+            return res.status(404).json({
+                message: "Product not found."
+            });
+        }
+
+        res.json({
+            message: "Product updated successfully.",
+            product
+        });
+
+    } catch (error) {
+        console.error("Product update error:", error);
+
+        res.status(500).json({
+            message: "Failed to update product.",
+            error: error.message
+        });
+    }
+});
+
+
+app.delete("/api/products/:id", async (req, res) => {
+    try {
+        const productId = req.params.id;
+
+        const product = await Product.findByIdAndDelete(
+            productId
+        );
+
+        if (!product) {
+            return res.status(404).json({
+                message: "Product not found."
+            });
+        }
+
+        res.json({
+            message: "Product deleted successfully.",
+            product
+        });
+
+    } catch (error) {
+        console.error("Product deletion error:", error);
+
+        res.status(500).json({
+            message: "Failed to delete product.",
+            error: error.message
+        });
+    }
+});
+
 app.post("/api/customers/register", async (req, res) => {
 
     try {
