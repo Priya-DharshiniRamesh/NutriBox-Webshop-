@@ -2733,3 +2733,1375 @@ footer::before {
         width: 100%;
     }
 }
+
+
+/* =====================================================
+   AI CHAT – FIX EXTRA SPACING
+   (pre-wrap was showing the HTML indentation as gaps)
+===================================================== */
+
+.ai-message,
+.user-message {
+    width: fit-content;
+    white-space: normal;
+    line-height: 1.6;
+    padding: 12px 18px;
+}
+
+.ai-message strong {
+    display: block;
+    margin: 0 0 4px;
+    font-size: 14px;
+    color: var(--g-700);
+}
+
+.ai-message p,
+.user-message p {
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+}
+
+
+/* =====================================================
+   FORGOT PASSWORD PAGE
+===================================================== */
+
+.auth-page {
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 100px);
+    padding: 70px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        linear-gradient(rgba(46, 125, 50, 0.06) 1px, transparent 1px) 0 0 / 50px 50px,
+        linear-gradient(90deg, rgba(46, 125, 50, 0.06) 1px, transparent 1px) 0 0 / 50px 50px,
+        radial-gradient(560px 400px at 8% 12%, rgba(102, 187, 106, 0.4), transparent 65%),
+        radial-gradient(560px 400px at 92% 88%, rgba(245, 158, 11, 0.28), transparent 65%),
+        linear-gradient(135deg, #e3f4e6, #f8fcf8);
+}
+
+.auth-card {
+    position: relative;
+    z-index: 2;
+    width: 450px;
+    max-width: 100%;
+    padding: 46px 42px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 32px;
+    box-shadow: var(--sh-lg), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    animation: fadeUp 0.9s var(--ease) both;
+}
+
+.auth-icon {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    background: linear-gradient(135deg, var(--g-100), var(--g-300));
+    border-radius: 26px;
+    box-shadow: 0 16px 32px rgba(46, 125, 50, 0.28), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    transform: rotate(-7deg);
+    transition: transform 0.5s var(--spring);
+}
+
+.auth-card:hover .auth-icon {
+    transform: rotate(5deg) scale(1.08);
+}
+
+.auth-card h1 {
+    margin: 0 0 10px;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.auth-card > p {
+    margin: 0 0 28px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
+.auth-card form {
+    text-align: left;
+}
+
+.auth-card label {
+    display: block;
+    margin: 0 0 7px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.auth-card input {
+    width: 100%;
+    margin: 0 0 18px;
+    padding: 14px 18px;
+    font-size: 15px;
+    background: #f9fbf9;
+    border: 1.5px solid #dbe3dc;
+    border-radius: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.auth-card input:hover {
+    border-color: var(--g-300);
+}
+
+.auth-card input:focus {
+    background: #fff;
+    border-color: var(--g-500);
+    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.14);
+}
+
+.auth-card button[type="submit"] {
+    width: 100%;
+    margin-top: 6px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--g-800), var(--g-600));
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: var(--sh-glow), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: transform 0.35s var(--spring), box-shadow 0.35s, background 0.35s;
+}
+
+.auth-card button[type="submit"]:hover {
+    transform: translateY(-3px);
+    background: var(--grad-brand);
+}
+
+.auth-card button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+.auth-card #message {
+    min-height: 22px;
+    margin: 16px 0 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.auth-links {
+    margin-top: 24px;
+    padding-top: 20px;
+    font-size: 14.5px;
+    border-top: 1px solid var(--line);
+}
+
+.auth-links a,
+.forgot-password-link {
+    font-weight: 600;
+    color: var(--g-600);
+    text-decoration: none;
+    transition: color 0.25s;
+}
+
+.auth-links a:hover,
+.forgot-password-link:hover {
+    color: var(--g-800);
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   ADMIN – PRODUCT MANAGEMENT
+===================================================== */
+
+.product-management {
+    margin-top: 30px;
+    padding: 34px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+}
+
+.product-management h2 {
+    margin-bottom: 8px;
+}
+
+.product-form {
+    padding: 28px;
+    background: #fff;
+    border: 1px solid #dbe7de;
+    border-radius: 20px;
+    box-shadow: var(--sh-sm);
+}
+
+.product-form h3 {
+    margin-bottom: 20px;
+    color: var(--g-800);
+}
+
+.product-form input,
+.product-form textarea {
+    padding: 13px 16px;
+    font-family: inherit;
+    background: #f9fbf9;
+    border: 1.5px solid #dbe3dc;
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.product-form input:focus,
+.product-form textarea:focus {
+    background: #fff;
+    border-color: var(--g-500);
+    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.14);
+}
+
+.product-form-buttons button,
+.admin-product-actions button {
+    padding: 11px 20px;
+    font-weight: 600;
+    transition: transform 0.3s var(--spring), box-shadow 0.3s, background 0.3s, color 0.3s;
+}
+
+.product-form-buttons button:first-child {
+    color: #fff;
+    background: linear-gradient(135deg, var(--g-800), var(--g-600));
+    box-shadow: 0 8px 18px rgba(46, 125, 50, 0.3);
+}
+
+.product-form-buttons button:first-child:hover {
+    background: var(--grad-brand);
+    transform: translateY(-2px);
+}
+
+#cancelEditButton {
+    color: #555;
+    background: #eef1ee;
+}
+
+#cancelEditButton:hover {
+    background: #e0e5e0;
+}
+
+.product-list-section h3 {
+    color: var(--g-800);
+}
+
+#adminProductList {
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+
+.admin-product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid #dbe7de;
+    border-radius: 18px;
+    box-shadow: var(--sh-xs);
+    transition: transform 0.35s var(--spring), box-shadow 0.35s, border-color 0.35s;
+}
+
+.admin-product-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--g-300);
+    box-shadow: var(--sh-md, 0 18px 36px rgba(46, 125, 50, 0.16));
+}
+
+.admin-product-card h4 {
+    font-size: 18px;
+    color: var(--g-800);
+}
+
+.admin-product-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+}
+
+.admin-product-card p strong {
+    color: var(--ink);
+}
+
+.admin-product-actions {
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+
+.admin-product-actions button {
+    flex: 1;
+}
+
+.admin-product-actions button:first-child {
+    color: var(--g-800);
+    background: var(--g-50);
+    border: 1px solid var(--g-200);
+}
+
+.admin-product-actions button:first-child:hover {
+    color: #fff;
+    background: var(--g-600);
+    transform: translateY(-2px);
+}
+
+.admin-product-actions button:last-child {
+    color: #b3261e;
+    background: #fdecea;
+    border: 1px solid #f5c6c2;
+}
+
+.admin-product-actions button:last-child:hover {
+    color: #fff;
+    background: #d32f2f;
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   MOBILE – NEW SECTIONS
+===================================================== */
+
+@media (max-width: 600px) {
+    .auth-page {
+        padding: 40px 15px;
+    }
+
+    .auth-card {
+        padding: 36px 24px;
+    }
+
+    .auth-card h1 {
+        font-size: 26px;
+    }
+
+    .product-management {
+        padding: 20px 16px;
+    }
+
+    .product-form {
+        padding: 20px 16px;
+    }
+
+    .product-form-buttons button {
+        width: 100%;
+    }
+}
+
+
+/* =====================================================
+   SHOPPING CART – POLISHED STYLES
+===================================================== */
+
+.cart-page {
+    position: relative;
+    min-height: calc(100vh - 100px);
+    padding: 60px 20px 80px;
+    background:
+        linear-gradient(rgba(46, 125, 50, 0.05) 1px, transparent 1px) 0 0 / 50px 50px,
+        linear-gradient(90deg, rgba(46, 125, 50, 0.05) 1px, transparent 1px) 0 0 / 50px 50px,
+        radial-gradient(520px 360px at 6% 8%, rgba(102, 187, 106, 0.32), transparent 65%),
+        radial-gradient(520px 360px at 94% 92%, rgba(245, 158, 11, 0.2), transparent 65%),
+        linear-gradient(135deg, #e9f6eb, #f8fcf8);
+}
+
+.cart-container {
+    max-width: 960px;
+}
+
+.cart-container h1 {
+    margin-bottom: 30px;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--g-800);
+}
+
+/* ---------- cart item ---------- */
+
+.cart-item {
+    gap: 24px;
+    padding: 22px 26px;
+    margin-bottom: 16px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #dbe7de;
+    border-radius: 20px;
+    box-shadow: var(--sh-sm);
+    transition: transform 0.35s var(--spring), box-shadow 0.35s, border-color 0.35s;
+    animation: fadeUp 0.5s var(--ease) both;
+}
+
+.cart-item::before {
+    content: "";
+    flex: 0 0 64px;
+    width: 64px;
+    height: 64px;
+    background:
+        var(--salad) center / 42px auto no-repeat,
+        linear-gradient(135deg, var(--g-100), var(--g-200));
+    border-radius: 18px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.cart-item:hover {
+    transform: translateY(-3px);
+    border-color: var(--g-300);
+    box-shadow: var(--sh-md);
+}
+
+.cart-item-info h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.cart-item-info p {
+    font-size: 14px;
+    color: var(--ink-soft);
+}
+
+/* ---------- quantity controls ---------- */
+
+.cart-item-controls {
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.cart-item-controls button {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--g-800);
+    background: var(--g-50);
+    border: 1px solid var(--g-200);
+    border-radius: 50%;
+    transition: transform 0.3s var(--spring), background 0.25s, color 0.25s;
+}
+
+.cart-item-controls button:hover {
+    color: #fff;
+    background: var(--g-600);
+    transform: scale(1.12);
+}
+
+.cart-item-controls button:active {
+    transform: scale(0.94);
+}
+
+.cart-item-controls span {
+    min-width: 32px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.cart-item-controls strong {
+    min-width: 84px;
+    text-align: right;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--g-700);
+}
+
+.cart-item-controls .remove-cart-item {
+    margin-left: 6px;
+    font-size: 15px;
+    color: #b3261e;
+    background: #fdecea;
+    border-color: #f5c6c2;
+}
+
+.cart-item-controls .remove-cart-item:hover {
+    color: #fff;
+    background: #d32f2f;
+}
+
+/* ---------- order summary ---------- */
+
+.cart-summary {
+    margin-top: 34px;
+    padding: 30px 32px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #dbe7de;
+    border-radius: 24px;
+    box-shadow: var(--sh-md);
+}
+
+.cart-summary h2 {
+    margin: 0 0 18px;
+    padding-bottom: 14px;
+    font-size: 22px;
+    color: var(--g-800);
+    border-bottom: 1px solid var(--line);
+}
+
+.cart-summary p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 12px;
+    font-size: 16px;
+    color: var(--ink-soft);
+}
+
+.cart-summary p strong {
+    color: var(--ink);
+}
+
+.cart-summary p:nth-of-type(2) {
+    margin-top: 16px;
+    padding-top: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    border-top: 1px dashed #cddccf;
+}
+
+.cart-summary p:nth-of-type(2) strong {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--g-700);
+}
+
+/* ---------- buttons ---------- */
+
+.cart-buttons {
+    gap: 14px;
+    margin-top: 26px;
+}
+
+.cart-buttons button {
+    flex: 1;
+    padding: 15px 22px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 14px;
+    transition: transform 0.35s var(--spring), box-shadow 0.35s, background 0.3s, color 0.3s;
+}
+
+.cart-buttons button:first-child {
+    color: #b3261e;
+    background: #fdecea;
+    border: 1px solid #f5c6c2;
+}
+
+.cart-buttons button:first-child:hover {
+    color: #fff;
+    background: #d32f2f;
+    transform: translateY(-3px);
+}
+
+.cart-buttons button:last-child {
+    flex: 2;
+    color: #fff;
+    background: linear-gradient(135deg, var(--g-800), var(--g-600));
+    box-shadow: var(--sh-glow), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.cart-buttons button:last-child:hover {
+    background: var(--grad-brand);
+    transform: translateY(-3px);
+}
+
+.cart-buttons button:active {
+    transform: scale(0.98);
+}
+
+/* ---------- empty cart ---------- */
+
+.empty-cart {
+    padding: 64px 24px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px dashed #b9d6bd;
+    border-radius: 24px;
+    box-shadow: var(--sh-sm);
+}
+
+.empty-cart h2 {
+    margin-bottom: 10px;
+    font-size: 26px;
+    color: var(--g-800);
+}
+
+.empty-cart p {
+    color: var(--ink-soft);
+}
+
+.empty-cart a {
+    margin-top: 22px;
+    padding: 14px 30px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--g-800), var(--g-600));
+    border-radius: var(--r-pill);
+    box-shadow: var(--sh-glow);
+    transition: transform 0.35s var(--spring), background 0.3s;
+}
+
+.empty-cart a:hover {
+    background: var(--grad-brand);
+    transform: translateY(-3px);
+}
+
+/* ---------- cart: tablet / mobile ---------- */
+
+@media (max-width: 700px) {
+    .cart-page {
+        padding: 36px 14px 60px;
+    }
+
+    .cart-container h1 {
+        font-size: 28px;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 18px;
+    }
+
+    .cart-item::before {
+        flex-basis: 52px;
+        width: 52px;
+        height: 52px;
+        background-size: 34px auto, auto;
+    }
+
+    .cart-item-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .cart-item-controls {
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+    }
+
+    .cart-item-controls strong {
+        min-width: 0;
+        margin-left: auto;
+    }
+
+    .cart-summary {
+        padding: 24px 20px;
+    }
+
+    .cart-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .cart-buttons button,
+    .cart-buttons button:last-child {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* =====================================================
+   AI CHAT - REMOVE OVER-SPACING (final override)
+   Only affects the AI chat boxes (admin + customer)
+===================================================== */
+
+.ai-messages .ai-message,
+.ai-messages .user-message {
+    display: block;
+    width: fit-content;
+    max-width: 82%;
+    margin: 0 0 12px;
+    padding: 12px 18px;
+    white-space: normal !important;
+    line-height: 1.55;
+    text-indent: 0;
+}
+
+.ai-messages .ai-message {
+    margin-right: auto;
+}
+
+.ai-messages .user-message {
+    margin-left: auto;
+}
+
+.ai-messages .ai-message strong {
+    display: block;
+    margin: 0 0 4px;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.ai-messages .ai-message p,
+.ai-messages .user-message p {
+    margin: 0 !important;
+    padding: 0 !important;
+    white-space: normal !important;
+    text-indent: 0;
+    line-height: 1.55;
+}
+
+.ai-messages {
+    min-height: 0;
+    padding: 20px;
+}
+
+@media (max-width: 600px) {
+    .ai-messages .ai-message,
+    .ai-messages .user-message {
+        max-width: 95%;
+    }
+}
+
+/* =====================================================
+   AI ASSISTANT - SIDE PANEL (admin dashboard)
+   Opened by the floating "Ask AI" button (ai-panel.js)
+===================================================== */
+
+.ai-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9000;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--g-800), var(--g-600));
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 14px 30px rgba(27, 94, 32, 0.38);
+    cursor: pointer;
+    transition: transform 0.35s var(--spring), box-shadow 0.3s, opacity 0.25s;
+}
+
+.ai-fab:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 18px 36px rgba(27, 94, 32, 0.45);
+}
+
+.ai-fab.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+.ai-panel-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9100;
+    background: rgba(10, 30, 14, 0.38);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.ai-panel-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.ai-panel-open {
+    overflow: hidden;
+}
+
+/* the section itself becomes the drawer */
+.ai-agent-section.admin-ai-section {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9200;
+    display: flex;
+    flex-direction: column;
+    width: 440px;
+    max-width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 22px 20px 20px;
+    background: var(--white);
+    border: none;
+    border-left: 1px solid var(--line);
+    border-radius: 24px 0 0 24px;
+    box-shadow: -24px 0 60px rgba(0, 0, 0, 0.22);
+    transform: translateX(105%);
+    visibility: hidden;
+    transition: transform 0.45s var(--spring), visibility 0s linear 0.45s;
+}
+
+.ai-agent-section.admin-ai-section.open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.45s var(--spring), visibility 0s;
+}
+
+.admin-ai-section .ai-panel-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--g-800);
+    background: var(--g-50);
+    border: 1px solid #cddccf;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, transform 0.3s var(--spring);
+}
+
+.admin-ai-section .ai-panel-close:hover {
+    color: #fff;
+    background: var(--g-700);
+    transform: rotate(90deg);
+}
+
+.admin-ai-section .admin-section-heading {
+    margin: 0 0 14px;
+    padding-right: 46px;
+}
+
+.admin-ai-section .admin-section-heading h2 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    line-height: 1.25;
+}
+
+.admin-ai-section .admin-section-heading p {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.4;
+}
+
+.admin-ai-section .ai-chat-box {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.admin-ai-section .ai-suggestions {
+    flex: 0 0 auto;
+    max-height: 132px;
+    padding: 12px;
+    gap: 8px;
+    overflow-y: auto;
+}
+
+.admin-ai-section .ai-suggestions button {
+    padding: 8px 14px;
+    font-size: 12px;
+}
+
+.admin-ai-section .ai-messages {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    padding: 16px;
+}
+
+.admin-ai-section .ai-messages .ai-message,
+.admin-ai-section .ai-messages .user-message {
+    max-width: 92%;
+}
+
+.admin-ai-section .ai-input-area {
+    flex: 0 0 auto;
+    padding: 12px;
+}
+
+@media (max-width: 600px) {
+    .ai-agent-section.admin-ai-section {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .admin-ai-section .ai-input-area {
+        flex-direction: row;
+    }
+
+    .admin-ai-section .ai-input-area button {
+        width: auto;
+    }
+
+    .ai-fab {
+        right: 16px;
+        bottom: 16px;
+        padding: 12px 20px;
+    }
+}
+
+/* =====================================================
+   AI ASSISTANT - CSS-ONLY SIDE PANEL (final override)
+   No HTML or JS needed: a green "Ask AI" tab sits on the
+   right edge. Hover / tap it (or click into the chat) and
+   the panel slides in. It stays open while you type.
+===================================================== */
+
+/* ignore the JS-based button/overlay if they exist */
+.ai-fab,
+.ai-panel-overlay,
+.admin-ai-section .ai-panel-close {
+    display: none !important;
+}
+
+.ai-agent-section.admin-ai-section {
+    visibility: visible;
+    transform: translateX(100%);
+    transition: transform 0.45s var(--spring);
+}
+
+/* the tab (this is the "button") */
+.ai-agent-section.admin-ai-section::before {
+    content: "🤖  Ask AI";
+    position: absolute;
+    top: 50%;
+    left: -54px;
+    width: 54px;
+    padding: 20px 0;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--g-800), var(--g-600));
+    border-radius: 18px 0 0 18px;
+    box-shadow: -10px 10px 26px rgba(27, 94, 32, 0.38);
+    cursor: pointer;
+}
+
+/* open: hovering the tab/panel, typing in it, or the .open class */
+.ai-agent-section.admin-ai-section:hover,
+.ai-agent-section.admin-ai-section:focus-within,
+.ai-agent-section.admin-ai-section.open {
+    transform: translateX(0);
+}
+
+/* tab fades a little while the panel is open */
+.ai-agent-section.admin-ai-section:hover::before,
+.ai-agent-section.admin-ai-section:focus-within::before,
+.ai-agent-section.admin-ai-section.open::before {
+    opacity: 0;
+}
+
+@media (max-width: 600px) {
+    .ai-agent-section.admin-ai-section::before {
+        left: -46px;
+        width: 46px;
+        font-size: 14px;
+    }
+}
+
+/* =====================================================
+   AI ASSISTANT - ROUND SPARKLE BUTTON (final override)
+   Fixed at the bottom-right, follows you while scrolling.
+   Hover / tap it and the AI panel slides in. CSS only.
+===================================================== */
+
+.ai-agent-section.admin-ai-section::before {
+    content: "";
+    top: auto;
+    bottom: 26px;
+    left: -88px;
+    width: 62px;
+    height: 62px;
+    padding: 0;
+    transform: none;
+    writing-mode: horizontal-tb;
+    font-size: 0;
+    letter-spacing: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cg fill=%22%233d4045%22%3E%3Cpath d=%22M21,3 C22.92,13.08 22.92,13.08 33,15 C22.92,16.92 22.92,16.92 21,27 C19.08,16.92 19.08,16.92 9,15 C19.08,13.08 19.08,13.08 21,3Z%22/%3E%3Cpath d=%22M9,21.5 C9.88,26.12 9.88,26.12 14.5,27 C9.88,27.88 9.88,27.88 9,32.5 C8.12,27.88 8.12,27.88 3.5,27 C8.12,26.12 8.12,26.12 9,21.5Z%22/%3E%3Cpath d=%22M31,23 C31.96,28.04 31.96,28.04 37,29 C31.96,29.96 31.96,29.96 31,35 C30.04,29.96 30.04,29.96 25,29 C30.04,28.04 30.04,28.04 31,23Z%22/%3E%3C/g%3E%3C/svg%3E") center / 34px 34px no-repeat, linear-gradient(145deg, #f7f9fb, #e6ebf0);
+    border-radius: 50%;
+    box-shadow:
+        9px 9px 20px rgba(150, 165, 185, 0.55),
+        -8px -8px 18px rgba(255, 255, 255, 0.95),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    transition: transform 0.35s var(--spring), box-shadow 0.3s ease, opacity 0.25s ease;
+    animation: aiBtnFloat 3.2s ease-in-out infinite;
+}
+
+@keyframes aiBtnFloat {
+    0%, 100% { margin-bottom: 0; }
+    50%      { margin-bottom: 6px; }
+}
+
+@media (max-width: 600px) {
+    .ai-agent-section.admin-ai-section::before {
+        bottom: 20px;
+        left: -76px;
+        width: 56px;
+        height: 56px;
+        background-size: 30px 30px, auto;
+    }
+}
+
+/* =====================================================
+   AI BUTTON - MORE MARGIN + GLOW / SHINE / COLOUR
+   (final override; CSS only)
+===================================================== */
+
+/* remove the grey shadow strip that showed on the right edge when closed */
+.ai-agent-section.admin-ai-section {
+    box-shadow: none;
+    transition: transform 0.45s var(--spring), box-shadow 0.45s ease;
+}
+
+.ai-agent-section.admin-ai-section:hover,
+.ai-agent-section.admin-ai-section:focus-within,
+.ai-agent-section.admin-ai-section.open {
+    box-shadow: -24px 0 60px rgba(0, 0, 0, 0.22);
+}
+
+/* the button: further from the edges, coloured sparkle, glowing + shining */
+.ai-agent-section.admin-ai-section::before {
+    bottom: 42px;
+    left: -106px;
+    width: 64px;
+    height: 64px;
+    background:
+        linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.95) 50%, transparent 62%) 150% 0 / 260% 100% no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%231e88e5%22/%3E%3Cstop offset=%220.5%22 stop-color=%22%238e44ad%22/%3E%3Cstop offset=%221%22 stop-color=%22%232e9e4f%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill=%22url%28%23g%29%22%3E%3Cpath d=%22M21,3 C22.92,13.08 22.92,13.08 33,15 C22.92,16.92 22.92,16.92 21,27 C19.08,16.92 19.08,16.92 9,15 C19.08,13.08 19.08,13.08 21,3Z%22/%3E%3Cpath d=%22M9,21.5 C9.88,26.12 9.88,26.12 14.5,27 C9.88,27.88 9.88,27.88 9,32.5 C8.12,27.88 8.12,27.88 3.5,27 C8.12,26.12 8.12,26.12 9,21.5Z%22/%3E%3Cpath d=%22M31,23 C31.96,28.04 31.96,28.04 37,29 C31.96,29.96 31.96,29.96 31,35 C30.04,29.96 30.04,29.96 25,29 C30.04,28.04 30.04,28.04 31,23Z%22/%3E%3C/g%3E%3C/svg%3E") center / 36px 36px no-repeat,
+        linear-gradient(145deg, #ffffff, #e9eef3);
+    box-shadow:
+        9px 9px 20px rgba(150, 165, 185, 0.5),
+        -8px -8px 18px rgba(255, 255, 255, 0.95),
+        0 0 22px 4px rgba(46, 158, 79, 0.45);
+    animation:
+        aiBtnFloat 3.2s ease-in-out infinite,
+        aiBtnGlow 4.5s ease-in-out infinite,
+        aiBtnShine 3.2s ease-in-out infinite;
+}
+
+@keyframes aiBtnGlow {
+    0%, 100% {
+        box-shadow:
+            9px 9px 20px rgba(150, 165, 185, 0.5),
+            -8px -8px 18px rgba(255, 255, 255, 0.95),
+            0 0 22px 4px rgba(46, 158, 79, 0.50);
+    }
+    33% {
+        box-shadow:
+            9px 9px 20px rgba(150, 165, 185, 0.5),
+            -8px -8px 18px rgba(255, 255, 255, 0.95),
+            0 0 28px 8px rgba(30, 136, 229, 0.50);
+    }
+    66% {
+        box-shadow:
+            9px 9px 20px rgba(150, 165, 185, 0.5),
+            -8px -8px 18px rgba(255, 255, 255, 0.95),
+            0 0 28px 8px rgba(142, 68, 173, 0.50);
+    }
+}
+
+@keyframes aiBtnShine {
+    0%, 30%  { background-position: 150% 0, center, 0 0; }
+    70%, 100% { background-position: -60% 0, center, 0 0; }
+}
+
+@media (max-width: 600px) {
+    .ai-agent-section.admin-ai-section::before {
+        bottom: 30px;
+        left: -92px;
+        width: 58px;
+        height: 58px;
+        background-size: 260% 100%, 32px 32px, auto;
+    }
+}
+
+/* =====================================================
+   PRODUCT SEARCH BOX (home page, products section)
+===================================================== */
+
+.product-search {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin: 6px auto 38px;
+    top: -22px; /* nudges the search box up without shifting the cards */
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.product-search::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e7d32' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.product-search input {
+    width: 100%;
+    padding: 15px 22px 15px 52px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--white);
+    border: 1.5px solid #cfe3d2;
+    border-radius: 999px;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: 0 8px 22px rgba(46, 125, 50, 0.08);
+    transition: border-color 0.25s, box-shadow 0.3s, transform 0.3s var(--spring);
+}
+
+.product-search input::placeholder {
+    color: #8a9a8d;
+}
+
+.product-search input:hover {
+    border-color: var(--g-500);
+}
+
+.product-search input:focus {
+    border-color: var(--g-600);
+    box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.16), 0 12px 28px rgba(46, 125, 50, 0.14);
+    transform: translateY(-2px);
+}
+
+.product-search-empty {
+    margin: 10px auto 0;
+    text-align: center;
+    font-size: 15px;
+    color: #6b7c6e;
+}
+
+@media (max-width: 600px) {
+    .product-search {
+        margin-bottom: 28px;
+    }
+}
+
+/* =====================================================
+   SHOPPING CART – LAYOUT & UX IMPROVEMENTS (CSS only)
+   Two-column desktop layout with a sticky order summary,
+   cleaner mobile cards, better focus states.
+===================================================== */
+
+.cart-container h1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: -0.02em;
+}
+
+.cart-container h1::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    margin-left: 6px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--g-300), transparent);
+}
+
+/* item card refinements */
+.cart-item {
+    position: relative;
+}
+
+.cart-item-info {
+    min-width: 0;
+}
+
+.cart-item-info h3 {
+    overflow-wrap: anywhere;
+}
+
+.cart-item-info p {
+    display: inline-block;
+    padding: 3px 10px;
+    font-weight: 500;
+    color: var(--g-700);
+    background: var(--g-50);
+    border: 1px solid var(--g-100);
+    border-radius: var(--r-pill);
+}
+
+/* quantity as a tidy pill */
+.cart-item-controls span {
+    padding: 6px 0;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+.cart-item-controls strong {
+    padding-left: 14px;
+    margin-left: 4px;
+    border-left: 1px solid var(--line);
+    font-variant-numeric: tabular-nums;
+}
+
+/* summary card */
+.cart-summary {
+    position: relative;
+    overflow: hidden;
+}
+
+.cart-summary::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 5px;
+    background: var(--grad-warm);
+}
+
+.cart-summary p strong {
+    font-variant-numeric: tabular-nums;
+}
+
+/* accessibility */
+.cart-item-controls button:focus-visible,
+.cart-buttons button:focus-visible,
+.empty-cart a:focus-visible {
+    outline: 3px solid rgba(46, 125, 50, 0.45);
+    outline-offset: 2px;
+}
+
+/* ---------- desktop: items left, sticky summary right ---------- */
+@media (min-width: 900px) {
+    .cart-container {
+        max-width: 1120px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        column-gap: 32px;
+        align-items: start;
+    }
+
+    .cart-container h1 {
+        grid-column: 1 / -1;
+    }
+
+    #cartItems {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .cart-summary {
+        grid-column: 2;
+        grid-row: 2;
+        position: sticky;
+        top: 110px;
+        margin-top: 0;
+        padding: 30px 28px;
+    }
+
+    .cart-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .cart-buttons button,
+    .cart-buttons button:last-child {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* ---------- mobile: compact two-row cards ---------- */
+@media (max-width: 600px) {
+    .cart-page {
+        padding: 36px 14px 56px;
+    }
+
+    .cart-container h1 {
+        font-size: 28px;
+        margin-bottom: 22px;
+    }
+
+    .cart-item {
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 14px;
+        align-items: center;
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .cart-item::before {
+        flex: none;
+        width: 52px;
+        height: 52px;
+        background-size: 34px auto, auto;
+        border-radius: 14px;
+    }
+
+    .cart-item-controls {
+        grid-column: 1 / -1;
+        width: 100%;
+        gap: 8px;
+        padding-top: 12px;
+        border-top: 1px dashed var(--line);
+    }
+
+    .cart-item-controls button {
+        width: 34px;
+        height: 34px;
+    }
+
+    .cart-item-controls strong {
+        min-width: 0;
+        margin-left: auto;
+        padding-left: 0;
+        border-left: none;
+        font-size: 17px;
+    }
+
+    .cart-item-controls .remove-cart-item {
+        margin-left: 4px;
+    }
+
+    .cart-summary {
+        padding: 24px 20px;
+        border-radius: 20px;
+    }
+
+    .cart-summary p:nth-of-type(2) strong {
+        font-size: 24px;
+    }
+
+    .cart-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .empty-cart {
+        padding: 44px 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cart-item,
+    .cart-item-controls button,
+    .cart-buttons button,
+    .empty-cart a {
+        animation: none;
+        transition: none;
+    }
+}

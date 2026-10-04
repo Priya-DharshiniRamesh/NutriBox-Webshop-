@@ -169,17 +169,16 @@ function saveCart() {
 
 function updateCartCount() {
     const cartCount = document.getElementById("cartCount");
-
     if (!cartCount) return;
 
-    const totalItems = cart.reduce(
-        (total, item) => total + item.quantity,
-        0
-    );
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
-    cartCount.textContent = totalItems;
+    if (totalItems === 0) {
+        cartCount.textContent = "";
+    } else {
+        cartCount.textContent = ` ${totalItems}`;
+    }
 }
-
 function addToCart(product) {
 
     const existingProduct = cart.find(
@@ -207,3 +206,31 @@ function addToCart(product) {
 }
 
 updateCartCount();
+
+(function () {
+    const list = document.getElementById("productList");
+    if (!list || document.getElementById("productSearch")) return;
+
+    const wrap = document.createElement("div");
+    wrap.className = "product-search";
+    wrap.innerHTML = '<input type="search" id="productSearch" placeholder="Search products..." autocomplete="off">';
+    list.parentNode.insertBefore(wrap, list);
+
+    const empty = document.createElement("p");
+    empty.className = "product-search-empty";
+    empty.textContent = "No products match your search.";
+    empty.style.display = "none";
+    list.parentNode.insertBefore(empty, list.nextSibling);
+
+    wrap.querySelector("input").addEventListener("input", function () {
+        const q = this.value.trim().toLowerCase();
+        const cards = list.querySelectorAll(".product-card");
+        let shown = 0;
+        cards.forEach(function (c) {
+            const ok = !q || c.textContent.toLowerCase().includes(q);
+            c.style.display = ok ? "" : "none";
+            if (ok) shown++;
+        });
+        empty.style.display = cards.length && !shown ? "block" : "none";
+    });
+})();
