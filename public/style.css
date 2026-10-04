@@ -2600,3 +2600,136 @@ footer::before {
     margin-top: 15px;
     flex-wrap: wrap;
 }
+
+/*SHOPPING CART*/
+
+.cart-page {
+    padding: 40px 20px;
+}
+
+.cart-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cart-container h1 {
+    margin-bottom: 25px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-info h3 {
+    margin: 0 0 8px;
+}
+
+.cart-item-info p {
+    margin: 0;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.cart-item-controls button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.cart-item-controls span {
+    min-width: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.cart-item-controls strong {
+    min-width: 80px;
+}
+
+.remove-cart-item {
+    margin-left: 5px;
+}
+
+.cart-summary {
+    margin-top: 30px;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+}
+
+.cart-summary h2 {
+    margin-top: 0;
+}
+
+.cart-summary p {
+    font-size: 17px;
+}
+
+.cart-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.cart-buttons button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 50px 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+}
+
+.empty-cart a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item-controls {
+        width: 100%;
+    }
+
+    .cart-buttons {
+        flex-direction: column;
+    }
+
+    .cart-buttons button {
+        width: 100%;
+    }
+}

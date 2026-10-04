@@ -28,13 +28,10 @@ async function loadProducts() {
 
                 <h4>₹${product.price} / ${product.unit}</h4>
 
-                <button onclick="openOrderForm(
-                    '${product._id}',
-                    '${product.name}',
-                    ${product.price}
-                )">
-                    Add to Order
+                <button onclick='addToCart(${JSON.stringify(product)})'>
+                    🛒 Add to Cart
                 </button>
+
             `;
 
             productList.appendChild(productCard);
@@ -157,5 +154,56 @@ async function placeOrder() {
     }
 }
 
-
 loadProducts();
+
+// ===============================
+// CART MANAGEMENT
+// ===============================
+
+let cart = JSON.parse(localStorage.getItem("nutriboxCart")) || [];
+
+function saveCart() {
+    localStorage.setItem("nutriboxCart", JSON.stringify(cart));
+    updateCartCount();
+}
+
+function updateCartCount() {
+    const cartCount = document.getElementById("cartCount");
+
+    if (!cartCount) return;
+
+    const totalItems = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
+
+    cartCount.textContent = totalItems;
+}
+
+function addToCart(product) {
+
+    const existingProduct = cart.find(
+        item => item.productId === product._id
+    );
+
+    if (existingProduct) {
+
+        existingProduct.quantity += 1;
+
+    } else {
+
+        cart.push({
+            productId: product._id,
+            name: product.name,
+            price: Number(product.price),
+            unit: product.unit,
+            quantity: 1
+        });
+    }
+
+    saveCart();
+
+    alert(`${product.name} added to cart!`);
+}
+
+updateCartCount();
