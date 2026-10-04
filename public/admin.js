@@ -1,9 +1,16 @@
-const adminLoggedIn =
-    localStorage.getItem("nutriboxAdmin");
+const adminToken = localStorage.getItem("nutriboxAdminToken");
 
-if (adminLoggedIn !== "true") {
+if (!adminToken) {
     window.location.href = "admin-login.html";
 }
+
+function adminHeaders() {
+    return {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${adminToken}`
+    };
+}
+
 
 const socket = io();
 
@@ -17,7 +24,9 @@ async function loadAdminDashboard() {
     try {
 
         const dashboardResponse =
-            await fetch("/api/admin/dashboard");
+            await fetch("/api/admin/dashboard", {
+                headers: adminHeaders()
+            });
 
         if (!dashboardResponse.ok) {
             throw new Error("Failed to load admin dashboard");
@@ -47,7 +56,9 @@ async function loadAdminDashboard() {
         displayAdminOrders(data.recentOrders);
 
         const analyticsResponse =
-            await fetch("/api/admin/analytics");
+            await fetch("/api/admin/analytics", {
+                headers: adminHeaders()
+            });
 
         if (!analyticsResponse.ok) {
             throw new Error("Failed to load analytics");
@@ -384,11 +395,7 @@ async function updateOrderStatus(
                 `/api/orders/${orderId}/status`,
                 {
                     method: "PUT",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+                    headers: adminHeaders(),
 
                     body: JSON.stringify({
                         orderStatus:
@@ -440,12 +447,13 @@ async function loadFeedback() {
         );
 
     try {
-
         const response =
             await fetch(
-                "/api/admin/feedback"
-            );
-
+                "/api/admin/feedback",
+                {
+                    headers: adminHeaders()
+                }
+            );    
         const feedback =
             await response.json();
 
@@ -507,11 +515,7 @@ async function loadFeedback() {
 loadFeedback();
 
 function adminLogout() {
-
-    localStorage.removeItem(
-        "nutriboxAdmin"
-    );
-
+    localStorage.removeItem("nutriboxAdminToken");
     window.location.href =
         "admin-login.html";
 
@@ -587,10 +591,7 @@ async function askAIAgent() {
                 {
                     method: "POST",
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+                    headers: adminHeaders(),
 
                     body: JSON.stringify({
                         question: question
@@ -784,9 +785,7 @@ async function saveProduct() {
                 `/api/products/${productId}`,
                 {
                     method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: adminHeaders(),
                     body: JSON.stringify({
                         ...productData,
                         available: true
@@ -800,9 +799,7 @@ async function saveProduct() {
                 "/api/products",
                 {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: adminHeaders(),
                     body: JSON.stringify(productData)
                 }
             );
@@ -903,7 +900,8 @@ async function deleteProduct(productId) {
         const response = await fetch(
             `/api/products/${productId}`,
             {
-                method: "DELETE"
+                method: "DELETE",
+                headers: adminHeaders()
             }
         );
 

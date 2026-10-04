@@ -7,6 +7,8 @@ const Feedback = require("./models/Feedback");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const adminAuth = require("./middleware/adminAuth");
 const http = require("http");
 const { Server } = require("socket.io");
 
@@ -43,7 +45,7 @@ app.get("/api/products", async (req, res) => {
     }
 });
 
-app.post("/api/products", async (req, res) => {
+app.post("/api/products", adminAuth, async (req, res) => {
     try {
         const {
             name,
@@ -92,7 +94,7 @@ app.post("/api/products", async (req, res) => {
 });
 
 
-app.put("/api/products/:id", async (req, res) => {
+app.put("/api/products/:id", adminAuth, async (req, res) => {
     try {
         const productId = req.params.id;
 
@@ -142,8 +144,7 @@ app.put("/api/products/:id", async (req, res) => {
     }
 });
 
-
-app.delete("/api/products/:id", async (req, res) => {
+app.delete("/api/products/:id", adminAuth, async (req, res) => {
     try {
         const productId = req.params.id;
 
@@ -542,7 +543,47 @@ app.post("/api/orders", async (req, res) => {
     }
 });
 
-app.get("/api/admin/dashboard", async (req, res) => {
+app.post("/api/admin/login", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        const ADMIN_USERNAME = "admin";
+        const ADMIN_PASSWORD = "NutriAdmin@2026";
+
+        if (
+            username !== ADMIN_USERNAME ||
+            password !== ADMIN_PASSWORD
+        ) {
+            return res.status(401).json({
+                message: "Invalid admin username or password."
+            });
+        }
+
+        const token = jwt.sign(
+            {
+                username: ADMIN_USERNAME,
+                role: "admin"
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "2h"
+            }
+        );
+
+        res.json({
+            message: "Admin login successful.",
+            token
+        });
+
+    } catch (error) {
+        console.error("Admin login error:", error);
+        res.status(500).json({
+            message: "Unable to login as admin."
+        });
+    }
+});
+
+app.get("/api/admin/dashboard", adminAuth, async (req, res) => {
     try {
         const orders = await Order.find()
             .sort({ orderDate: -1 });
@@ -622,7 +663,7 @@ app.get("/api/admin/dashboard", async (req, res) => {
     }
 });
 
-app.get("/api/admin/analytics", async (req, res) => {
+app.get("/api/admin/analytics", adminAuth, async (req, res) => {
     try {
 
         const orders = await Order.find().sort({ orderDate: 1 });
@@ -738,7 +779,7 @@ app.get("/api/customers/:id/orders", async (req, res) => {
     }
 });
 
-app.put("/api/orders/:id/status", async (req, res) => {
+app.put("/api/orders/:id/status", adminAuth, async (req, res) => {
     try {
         const orderId = req.params.id;
         const { orderStatus } = req.body;
@@ -853,7 +894,7 @@ app.post("/api/feedback", async (req, res) => {
     }
 });
 
-app.get("/api/admin/feedback", async (req, res) => {
+app.get("/api/admin/feedback", adminAuth, async (req, res) => {
     try {
         const feedback = await Feedback.find()
             .sort({ createdAt: -1 });
@@ -869,7 +910,7 @@ app.get("/api/admin/feedback", async (req, res) => {
     }
 });
 
-app.post("/api/ai-agent", async (req, res) => {
+app.post("/api/ai-agent", adminAuth, async (req, res) => {
     try {
         const { question } = req.body;
 

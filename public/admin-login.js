@@ -1,4 +1,4 @@
-document.getElementById("adminLoginForm").addEventListener("submit", function(event) {
+document.getElementById("adminLoginForm").addEventListener("submit", async function(event) {
     event.preventDefault();
 
     const username =
@@ -10,17 +10,42 @@ document.getElementById("adminLoginForm").addEventListener("submit", function(ev
     const loginMessage =
         document.getElementById("loginMessage");
 
-    if (username === "admin" && password === "NutriAdmin@2026") {
+    if (!username || !password) {
+        loginMessage.textContent = "Please enter username and password.";
+        loginMessage.style.color = "red";
+        return;
+    }
 
-        localStorage.setItem("nutriboxAdmin", "true");
+    try {
+        const response = await fetch("/api/admin/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            loginMessage.textContent =
+                data.message || "Invalid admin username or password.";
+            loginMessage.style.color = "red";
+            return;
+        }
+
+        localStorage.setItem("nutriboxAdminToken", data.token);
 
         window.location.href = "admin.html";
 
-    } else {
+    } catch (error) {
+        console.error("Admin login error:", error);
 
         loginMessage.textContent =
-            "Invalid admin username or password.";
-
+            "Unable to connect to the server.";
         loginMessage.style.color = "red";
     }
 });
