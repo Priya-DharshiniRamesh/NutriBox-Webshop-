@@ -6,6 +6,7 @@ const Order = require("./models/Order");
 const Feedback = require("./models/Feedback");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const bcrypt = require("bcryptjs");
 const http = require("http");
 const { Server } = require("socket.io");
 
@@ -195,8 +196,9 @@ app.post("/api/customers/forgot-password", async (req, res) => {
             });
         }
 
-        customer.password = newPassword;
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
 
+        customer.password = hashedPassword;
         await customer.save();
 
         res.json({
@@ -256,23 +258,16 @@ app.post("/api/customers/register", async (req, res) => {
 
         }
 
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const customer = new Customer({
-
-            organizationName: organizationName,
-
-            customerType: customerType,
-
-            contactPerson: contactPerson,
-
-            email: email,
-
-            phone: phone,
-
-            location: location,
-
-            password: password
-
+            organizationName,
+            customerType,
+            contactPerson,
+            email,
+            phone,
+            location,
+            password: hashedPassword
         });
 
 
@@ -328,18 +323,29 @@ app.post("/api/customers/login", async (req, res) => {
 
         if (!customer) {
 
-            return res.status(401).json({
-                message: "Invalid email or password."
+            return res.status(404).json({
+                message: "Please register to continue."
             });
 
         }
 
-        if (customer.password !== password) {
+        let passwordMatch = false;
 
+        if (customer.password.startsWith("$2")) {
+            passwordMatch = await bcrypt.compare(password, customer.password);
+        } else {
+            passwordMatch = customer.password === password;
+
+            if (passwordMatch) {
+                customer.password = await bcrypt.hash(password, 10);
+                await customer.save();
+            }
+        }
+
+        if (!passwordMatch) {
             return res.status(401).json({
                 message: "Invalid email or password."
             });
-
         }
 
         res.status(200).json({
